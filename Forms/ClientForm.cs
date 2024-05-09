@@ -36,7 +36,60 @@ namespace ClientLoanManagementSystemByHulom.Forms
         {
             AddClientForm getNewClient = new AddClientForm();
 
-            getNewClient.ShowDialog();
+            if (getNewClient.ShowDialog() == DialogResult.OK)
+            {
+                _clientDb.AddClient(getNewClient.Firstname, getNewClient.Lastname, getNewClient.Residency, getNewClient.Birthdate);
+            }
+        }
+
+        private int _getSelectedId;
+        private readonly HashSet<int> _getSelectedIds = new HashSet<int>();
+        private void ClientTable_SelectionChanged(object sender, EventArgs e)
+        {
+            _getSelectedIds.Clear();
+            if (ClientTable.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            _getSelectedId = (int)ClientTable.SelectedRows[0].Cells[0].Value;
+            
+            foreach (DataGridViewRow row in ClientTable.SelectedRows)
+            {
+                int ids = (int)row.Cells[0].Value;
+                _getSelectedIds.Add(ids);
+            }
+        }
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            foreach (int id in _getSelectedIds)
+            {
+                MessageBox.Show(id.ToString());
+            }
+        }
+
+        private int _getSelectedCol;
+        private void ClientTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                _getSelectedCol = e.ColumnIndex;
+            }
+        }
+
+        private void ClientTable_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+
+        }
+
+        private void ClientTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
+﻿using System.Windows.Forms;
+
+namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 {
     partial class AddClientForm
     {
@@ -20,6 +22,13 @@
             base.Dispose(disposing);
         }
 
+        private void InitializeAddedComponent()
+        {
+            this.FirstnameTextbox.KeyPress += new KeyPressEventHandler(AddClientForm
+                .ValidateStringOnlyTextBox);
+            this.LastnameTextbox.KeyPress += new KeyPressEventHandler(AddClientForm.ValidateStringOnlyTextBox);
+        }
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -29,12 +38,12 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.FirstnameTextbox = new System.Windows.Forms.TextBox();
+            this.LastnameTextbox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.ResidencyTextbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.BdayInput = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.AddButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
@@ -51,23 +60,23 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Firstname";
             // 
-            // textBox1
+            // FirstnameTextbox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(8, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(256, 27);
-            this.textBox1.TabIndex = 1;
+            this.FirstnameTextbox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FirstnameTextbox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FirstnameTextbox.Location = new System.Drawing.Point(8, 23);
+            this.FirstnameTextbox.Name = "FirstnameTextbox";
+            this.FirstnameTextbox.Size = new System.Drawing.Size(256, 27);
+            this.FirstnameTextbox.TabIndex = 1;
             // 
-            // textBox2
+            // LastnameTextbox
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(8, 69);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(256, 27);
-            this.textBox2.TabIndex = 3;
+            this.LastnameTextbox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LastnameTextbox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LastnameTextbox.Location = new System.Drawing.Point(8, 69);
+            this.LastnameTextbox.Name = "LastnameTextbox";
+            this.LastnameTextbox.Size = new System.Drawing.Size(256, 27);
+            this.LastnameTextbox.TabIndex = 3;
             // 
             // label2
             // 
@@ -80,14 +89,14 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Lastname";
             // 
-            // textBox3
+            // ResidencyTextbox
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBox3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(8, 115);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(256, 27);
-            this.textBox3.TabIndex = 5;
+            this.ResidencyTextbox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ResidencyTextbox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResidencyTextbox.Location = new System.Drawing.Point(8, 115);
+            this.ResidencyTextbox.Name = "ResidencyTextbox";
+            this.ResidencyTextbox.Size = new System.Drawing.Size(256, 27);
+            this.ResidencyTextbox.TabIndex = 5;
             // 
             // label3
             // 
@@ -100,13 +109,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Residency";
             // 
-            // dateTimePicker1
+            // BdayInput
             // 
-            this.dateTimePicker1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dateTimePicker1.Location = new System.Drawing.Point(8, 161);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(256, 21);
-            this.dateTimePicker1.TabIndex = 6;
+            this.BdayInput.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BdayInput.Location = new System.Drawing.Point(8, 161);
+            this.BdayInput.Name = "BdayInput";
+            this.BdayInput.Size = new System.Drawing.Size(256, 21);
+            this.BdayInput.TabIndex = 6;
             // 
             // label4
             // 
@@ -158,13 +167,13 @@
             this.ControlBox = false;
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.AddButton);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.BdayInput);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.ResidencyTextbox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.LastnameTextbox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.FirstnameTextbox);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
@@ -175,7 +184,6 @@
             this.Padding = new System.Windows.Forms.Padding(8, 4, 8, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Client";
-            this.Load += new System.EventHandler(this.AddClientForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,12 +192,12 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox FirstnameTextbox;
+        private System.Windows.Forms.TextBox LastnameTextbox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox ResidencyTextbox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker BdayInput;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button CancelButton;

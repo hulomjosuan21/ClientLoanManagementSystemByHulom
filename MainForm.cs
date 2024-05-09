@@ -20,7 +20,7 @@ namespace ClientLoanManagementSystemByHulom
         private void MainForm_Load(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
-            LoadForm(new Forms.ClientForm());
+            LoadForm(new Forms.DashboardForm());
         }
 
         private void DashboardButton_Click(object sender, EventArgs e)
