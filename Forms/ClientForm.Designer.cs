@@ -36,7 +36,7 @@
             this.UpdateButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.ViewLoanButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SearchTextbox = new System.Windows.Forms.TextBox();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,6 +82,7 @@
             this.ClientTable.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.ClientTable_CellBeginEdit);
             this.ClientTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClientTable_CellClick);
             this.ClientTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClientTable_CellEndEdit);
+            this.ClientTable.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.ClientTable_CellValidating);
             this.ClientTable.SelectionChanged += new System.EventHandler(this.ClientTable_SelectionChanged);
             // 
             // panel1
@@ -90,7 +91,7 @@
             this.panel1.Controls.Add(this.UpdateButton);
             this.panel1.Controls.Add(this.DeleteButton);
             this.panel1.Controls.Add(this.ViewLoanButton);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.SearchTextbox);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(8, 0);
@@ -163,14 +164,15 @@
             this.ViewLoanButton.UseVisualStyleBackColor = false;
             this.ViewLoanButton.Click += new System.EventHandler(this.ViewLoanButton_Click);
             // 
-            // textBox1
+            // SearchTextbox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.textBox1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(60, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(184, 27);
-            this.textBox1.TabIndex = 1;
+            this.SearchTextbox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SearchTextbox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchTextbox.Location = new System.Drawing.Point(60, 4);
+            this.SearchTextbox.Name = "SearchTextbox";
+            this.SearchTextbox.Size = new System.Drawing.Size(184, 27);
+            this.SearchTextbox.TabIndex = 1;
+            this.SearchTextbox.TextChanged += new System.EventHandler(this.SearchTextbox_TextChanged);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -239,7 +241,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn birthdayDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource clientBindingSource;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox SearchTextbox;
         private System.Windows.Forms.Button ViewLoanButton;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button UpdateButton;

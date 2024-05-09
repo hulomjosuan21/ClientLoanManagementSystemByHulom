@@ -41,5 +41,69 @@ namespace ClientLoanManagementSystemByHulom.Handlers
 
             _bindingSource.DataSource = Con.Clients.ToList();
         }
+
+        public void UpdateClient(int _id, int colIndex, object newVal)
+        {
+            Client selectedClient = _context.Clients.FirstOrDefault(q => q.Id == _id);
+
+            switch (colIndex)
+            {
+                case 0:
+                    selectedClient.Firstname = (string)newVal;
+                    break;
+                case 1:
+                    selectedClient.Lastname = (string)newVal;
+                    break;
+                case 2:
+                    selectedClient.Residency = (string)newVal;
+                    break;
+                case 3:
+                    selectedClient.Birthday = (DateTime)newVal;
+                    break;
+                default:
+                    break;
+            }
+
+            _context.SaveChanges();
+            _bindingSource.DataSource = Con.Clients.ToList();
+        }
+
+        public void DeleteClient(int _id)
+        {
+            Client itemToDelete = _context.Clients.Where(q => q.Id == _id).FirstOrDefault();
+
+            _ = _context.Clients.Remove(itemToDelete);
+
+            _context.SaveChanges();
+            _bindingSource.DataSource = Con.Clients.ToList();
+        }
+
+        public void SearchClient(string text)
+        {
+            try
+            {
+                bool isId = int.TryParse(text, out int id);
+                bool isBirthDate = DateTime.TryParse(text, out DateTime birthDate);
+
+                var result = Con.Clients
+                    .Where(c => (isId && c.Id == id) ||
+                                c.Firstname.Contains(text) ||
+                                c.Lastname.Contains(text) ||
+                                c.Residency.Contains(text) ||
+                                (isBirthDate && c.Birthday == birthDate))
+                    .Select(c => new
+                    {
+                        c.Id,
+                        c.Firstname,
+                        c.Lastname,
+                        c.Residency,
+                        c.Birthday
+                    })
+                    .ToList();
+
+                _bindingSource.DataSource = result;
+            }
+            catch (Exception) { }
+        }
     }
 }

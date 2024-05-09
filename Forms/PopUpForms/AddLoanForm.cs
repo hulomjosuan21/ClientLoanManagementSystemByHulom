@@ -13,9 +13,16 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 {
     public partial class AddLoanForm : Form
     {
+        public double LoanAmt { get; set; }
+        public double Interest { get; set; }
+        public PaymentTerm SelectedTerm { get; set; }
+        public int NoOfPayment { get; set; }
+        public double Deduction { get; set; }
+
         public AddLoanForm()
         {
             InitializeComponent();
+            InitializeAddedComponent();
         }
 
         protected override void WndProc(ref Message message)
@@ -48,6 +55,24 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
         private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void InputChanges(object sender, EventArgs e)
+        {
+
+        }
+
+        public static void CatchNonNumericInput(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

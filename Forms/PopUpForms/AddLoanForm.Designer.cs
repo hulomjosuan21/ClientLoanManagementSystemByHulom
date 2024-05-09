@@ -1,4 +1,6 @@
-﻿namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
+﻿using System.Windows.Forms;
+
+namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 {
     partial class AddLoanForm
     {
@@ -18,6 +20,31 @@
                 components.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //this.LoanAmountTextBox
+        //this.InterestTextBox
+        //this.NoOfPaymentTextBox
+        //this.InsuranceTextBox
+        //this.OthersTextBox
+        private void InitializeAddedComponent()
+        {
+            this.LoanAmountTextBox.TextChanged += new System.EventHandler(this.InputChanges);
+            this.InterestTextBox.TextChanged += new System.EventHandler(this.InputChanges);
+            this.NoOfPaymentTextBox.TextChanged += new System.EventHandler(this.InputChanges);
+            this.InsuranceTextBox.TextChanged += new System.EventHandler(this.InputChanges);
+            this.OthersTextBox.TextChanged += new System.EventHandler(this.InputChanges);
+
+            this.LoanAmountTextBox.KeyPress += new KeyPressEventHandler(AddLoanForm
+                .CatchNonNumericInput);
+            this.InterestTextBox.KeyPress += new KeyPressEventHandler(AddLoanForm
+                .CatchNonNumericInput);
+            this.NoOfPaymentTextBox.KeyPress += new KeyPressEventHandler(AddLoanForm
+                .CatchNonNumericInput);
+            this.InsuranceTextBox.KeyPress += new KeyPressEventHandler(AddLoanForm
+                .CatchNonNumericInput);
+            this.OthersTextBox.KeyPress += new KeyPressEventHandler(AddLoanForm
+                .CatchNonNumericInput);
         }
 
         #region Windows Form Designer generated code
@@ -70,13 +97,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(357, 304);
+            this.panel1.Size = new System.Drawing.Size(357, 184);
             this.panel1.TabIndex = 0;
             // 
             // OthersTextBox
             // 
             this.OthersTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OthersTextBox.Location = new System.Drawing.Point(212, 233);
+            this.OthersTextBox.Location = new System.Drawing.Point(212, 152);
             this.OthersTextBox.Name = "OthersTextBox";
             this.OthersTextBox.Size = new System.Drawing.Size(139, 27);
             this.OthersTextBox.TabIndex = 12;
@@ -84,7 +111,7 @@
             // InsuranceTextBox
             // 
             this.InsuranceTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InsuranceTextBox.Location = new System.Drawing.Point(34, 233);
+            this.InsuranceTextBox.Location = new System.Drawing.Point(34, 152);
             this.InsuranceTextBox.Name = "InsuranceTextBox";
             this.InsuranceTextBox.Size = new System.Drawing.Size(172, 27);
             this.InsuranceTextBox.TabIndex = 11;
@@ -93,7 +120,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(208, 211);
+            this.label7.Location = new System.Drawing.Point(208, 130);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 19);
             this.label7.TabIndex = 10;
@@ -103,7 +130,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(30, 211);
+            this.label6.Location = new System.Drawing.Point(30, 130);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 19);
             this.label6.TabIndex = 9;
@@ -113,7 +140,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 192);
+            this.label5.Location = new System.Drawing.Point(12, 113);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 19);
             this.label5.TabIndex = 8;
@@ -123,7 +150,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(208, 107);
+            this.label4.Location = new System.Drawing.Point(208, 61);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 19);
             this.label4.TabIndex = 7;
@@ -132,7 +159,7 @@
             // NoOfPaymentTextBox
             // 
             this.NoOfPaymentTextBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NoOfPaymentTextBox.Location = new System.Drawing.Point(212, 129);
+            this.NoOfPaymentTextBox.Location = new System.Drawing.Point(212, 83);
             this.NoOfPaymentTextBox.Name = "NoOfPaymentTextBox";
             this.NoOfPaymentTextBox.Size = new System.Drawing.Size(139, 27);
             this.NoOfPaymentTextBox.TabIndex = 6;
@@ -141,7 +168,7 @@
             // 
             this.TermComboBox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TermComboBox.FormattingEnabled = true;
-            this.TermComboBox.Location = new System.Drawing.Point(16, 129);
+            this.TermComboBox.Location = new System.Drawing.Point(16, 83);
             this.TermComboBox.Name = "TermComboBox";
             this.TermComboBox.Size = new System.Drawing.Size(190, 27);
             this.TermComboBox.TabIndex = 5;
@@ -150,7 +177,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 107);
+            this.label3.Location = new System.Drawing.Point(12, 61);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 19);
             this.label3.TabIndex = 4;
@@ -202,7 +229,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(357, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(254, 304);
+            this.panel2.Size = new System.Drawing.Size(254, 184);
             this.panel2.TabIndex = 1;
             // 
             // AmountsLabel
@@ -211,7 +238,7 @@
             this.AmountsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.AmountsLabel.Location = new System.Drawing.Point(142, 9);
             this.AmountsLabel.Name = "AmountsLabel";
-            this.AmountsLabel.Size = new System.Drawing.Size(109, 261);
+            this.AmountsLabel.Size = new System.Drawing.Size(109, 140);
             this.AmountsLabel.TabIndex = 18;
             this.AmountsLabel.Text = "0\r\n0\r\n0\r\n\r\n0";
             this.AmountsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -221,7 +248,7 @@
             this.label8.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(6, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(139, 261);
+            this.label8.Size = new System.Drawing.Size(139, 140);
             this.label8.TabIndex = 17;
             this.label8.Text = "Loan Amount:\r\nReceivable Amount:\r\nDeduction:\r\nDue Date:\r\nTotal Payable:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -233,7 +260,7 @@
             this.CancelButton.FlatAppearance.BorderSize = 0;
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(125, 273);
+            this.CancelButton.Location = new System.Drawing.Point(125, 152);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(129, 31);
             this.CancelButton.TabIndex = 16;
@@ -248,7 +275,7 @@
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddButton.Location = new System.Drawing.Point(0, 273);
+            this.AddButton.Location = new System.Drawing.Point(0, 152);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(128, 31);
             this.AddButton.TabIndex = 15;
@@ -260,13 +287,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 304);
+            this.ClientSize = new System.Drawing.Size(611, 184);
             this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MaximumSize = new System.Drawing.Size(627, 343);
-            this.MinimumSize = new System.Drawing.Size(627, 343);
+            this.MaximumSize = new System.Drawing.Size(627, 223);
+            this.MinimumSize = new System.Drawing.Size(627, 223);
             this.Name = "AddLoanForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddLoanForm";

@@ -28,17 +28,14 @@ namespace ClientLoanManagementSystemByHulom.Forms
 
         private void ViewLoanButton_Click(object sender, EventArgs e)
         {
-            LoanForm openLoan = new LoanForm(1);
-            openLoan.ShowDialog();
-        }
-
-        private void AddButton_Click(object sender, EventArgs e)
-        {
-            AddClientForm getNewClient = new AddClientForm();
-
-            if (getNewClient.ShowDialog() == DialogResult.OK)
+            if (_getSelectedId > 0)
             {
-                _clientDb.AddClient(getNewClient.Firstname, getNewClient.Lastname, getNewClient.Residency, getNewClient.Birthdate);
+                LoanForm openLoan = new LoanForm(_getSelectedId);
+                openLoan.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No Selected Client!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -60,16 +57,57 @@ namespace ClientLoanManagementSystemByHulom.Forms
                 _getSelectedIds.Add(ids);
             }
         }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            AddClientForm getNewClient = new AddClientForm();
+
+            if (getNewClient.ShowDialog() == DialogResult.OK)
+            {
+                _clientDb.AddClient(getNewClient.Firstname, getNewClient.Lastname, getNewClient.Residency, getNewClient.Birthdate);
+            }
+        }
+
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-
+            if (_getSelectedCol > 0 && _getSelectedId > 0 && !_getNewCellVal.Equals(null))
+            {
+                if (!_getNewCellVal.ToString().Equals(_getOldCellVal.ToString(), StringComparison.OrdinalIgnoreCase))
+                {
+                    _clientDb.UpdateClient(_getSelectedId, _getSelectedCol-1, _getNewCellVal);
+                }
+                else
+                {
+                    MessageBox.Show("No Changes!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Cell is being edit!",
+                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            foreach (int id in _getSelectedIds)
+            if (_getSelectedIds.Count != 0)
             {
-                MessageBox.Show(id.ToString());
+                HashSet<int> selectedIdsCopy = new HashSet<int>(_getSelectedIds);
+
+                foreach (int id in selectedIdsCopy)
+                {
+                    DialogResult result = MessageBox.Show($"Do you want to delete the client ID {id}", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        _clientDb.DeleteClient(id);
+                        _getSelectedIds.Remove(id);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Client Selected", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -82,14 +120,39 @@ namespace ClientLoanManagementSystemByHulom.Forms
             }
         }
 
+        private object _getOldCellVal;
         private void ClientTable_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-
+            if (sender is DataGridView dgv && e.ColumnIndex >= 0 && e.RowIndex >= 0)
+            {
+                _getOldCellVal = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            }
         }
 
+        private object _getNewCellVal;
         private void ClientTable_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            if (sender is DataGridView dgv && e.ColumnIndex >= 0 && e.RowIndex >= 0)
+            {
+                _getNewCellVal = dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            }
+        }
 
+        private void ClientTable_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 4)
+            {
+                if (!DateTime.TryParse(e.FormattedValue.ToString(), out _))
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("Please enter a valid date and time format (e.g., MM/dd/yyyy HH:mm:ss).", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void SearchTextbox_TextChanged(object sender, EventArgs e)
+        {
+            _clientDb.SearchClient(SearchTextbox.Text.Trim());
         }
     }
 }

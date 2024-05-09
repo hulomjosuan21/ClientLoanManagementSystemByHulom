@@ -51,7 +51,7 @@
             this.CancelButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CancelButton.Location = new System.Drawing.Point(136, 62);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(128, 31);
+            this.CancelButton.Size = new System.Drawing.Size(125, 31);
             this.CancelButton.TabIndex = 14;
             this.CancelButton.Text = "CANCEL";
             this.CancelButton.UseVisualStyleBackColor = false;
@@ -64,7 +64,7 @@
             this.SetButton.FlatAppearance.BorderSize = 0;
             this.SetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SetButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SetButton.Location = new System.Drawing.Point(8, 62);
+            this.SetButton.Location = new System.Drawing.Point(11, 62);
             this.SetButton.Name = "SetButton";
             this.SetButton.Size = new System.Drawing.Size(128, 31);
             this.SetButton.TabIndex = 13;
