@@ -94,7 +94,26 @@
     <Compile Include="Forms\LoanForm.Designer.cs">
       <DependentUpon>LoanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PopUpForms\AddClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PopUpForms\AddClientForm.Designer.cs">
+      <DependentUpon>AddClientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PopUpForms\AddLoanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PopUpForms\AddLoanForm.Designer.cs">
+      <DependentUpon>AddLoanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PopUpForms\SetStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PopUpForms\SetStatusForm.Designer.cs">
+      <DependentUpon>SetStatusForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Handlers\ClientHandler.cs" />
+    <Compile Include="Handlers\LoanHandlers.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +122,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\LoanStatus.cs" />
+    <Compile Include="Utilities\PaymentTerm.cs" />
     <EmbeddedResource Include="Forms\ClientForm.resx">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +132,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoanForm.resx">
       <DependentUpon>LoanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PopUpForms\AddClientForm.resx">
+      <DependentUpon>AddClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PopUpForms\AddLoanForm.resx">
+      <DependentUpon>AddLoanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PopUpForms\SetStatusForm.resx">
+      <DependentUpon>SetStatusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -162,5 +192,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

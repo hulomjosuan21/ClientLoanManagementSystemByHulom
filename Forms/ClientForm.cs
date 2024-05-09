@@ -1,4 +1,5 @@
-﻿using ClientLoanManagementSystemByHulom.Handlers;
+﻿using ClientLoanManagementSystemByHulom.Forms.PopUpForms;
+using ClientLoanManagementSystemByHulom.Handlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,13 @@ namespace ClientLoanManagementSystemByHulom.Forms
         {
             LoanForm openLoan = new LoanForm(1);
             openLoan.ShowDialog();
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            AddClientForm getNewClient = new AddClientForm();
+
+            getNewClient.ShowDialog();
         }
     }
 }

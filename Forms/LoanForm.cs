@@ -1,4 +1,5 @@
 ﻿using ClientLoanManagementSystemByHulom.Entities;
+using ClientLoanManagementSystemByHulom.Forms.PopUpForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +42,18 @@ namespace ClientLoanManagementSystemByHulom.Forms
         {
             Text = $"Cliend ID #{_currentClientId}";
             loanBindingSource.DataSource = new hulomdbEntities().Loans.Where(l => l.ClientId == _currentClientId).ToList();
+        }
+
+        private void StatusButton_Click(object sender, EventArgs e)
+        {
+            SetStatusForm getStatus = new SetStatusForm();
+            getStatus.ShowDialog();
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            AddLoanForm getNewLoan = new AddLoanForm();
+            getNewLoan.ShowDialog();
         }
     }
 }

@@ -143,6 +143,7 @@
             this.AddButton.TabIndex = 5;
             this.AddButton.Text = "ADD";
             this.AddButton.UseVisualStyleBackColor = false;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // UpdateButton
             // 

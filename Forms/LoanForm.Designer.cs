@@ -87,6 +87,7 @@
             this.AddButton.TabIndex = 7;
             this.AddButton.Text = "ADD";
             this.AddButton.UseVisualStyleBackColor = false;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // StatusButton
             // 
@@ -102,6 +103,7 @@
             this.StatusButton.TabIndex = 6;
             this.StatusButton.Text = "SET STATUS";
             this.StatusButton.UseVisualStyleBackColor = false;
+            this.StatusButton.Click += new System.EventHandler(this.StatusButton_Click);
             // 
             // LoanTable
             // 
