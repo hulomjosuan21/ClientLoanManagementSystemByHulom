@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="hulomdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="45" />
+          <Property Name="Lastname" Type="varchar" MaxLength="45" />
+          <Property Name="Residency" Type="varchar" MaxLength="200" />
+          <Property Name="Birthday" Type="date" />
+        </EntityType>
+        <EntityType Name="Loan">
+          <Key>
+            <PropertyRef Name="LoanID" />
+          </Key>
+          <Property Name="LoanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+          <Property Name="Loan_AMT" Type="float" Nullable="false" />
+          <Property Name="Interest" Type="float" />
+          <Property Name="Term" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="NoOf_Payment" Type="int" Nullable="false" />
+          <Property Name="Deduction" Type="float" Nullable="false" />
+          <Property Name="Interested_AMT" Type="float" Nullable="false" />
+          <Property Name="Receivable_AMT" Type="float" Nullable="false" />
+          <Property Name="Total_Payable" Type="float" Nullable="false" />
+          <Property Name="Due_Date" Type="date" Nullable="false" />
+          <Property Name="Status_Paid" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityContainer Name="hulomdbModelStoreContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Loan" EntityType="Self.Loan" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hulomdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Residency" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Loan">
+          <Key>
+            <PropertyRef Name="LoanID" />
+          </Key>
+          <Property Name="LoanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="Loan_AMT" Type="Double" Nullable="false" />
+          <Property Name="Interest" Type="Double" />
+          <Property Name="Term" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NoOf_Payment" Type="Int32" Nullable="false" />
+          <Property Name="Deduction" Type="Double" Nullable="false" />
+          <Property Name="Interested_AMT" Type="Double" Nullable="false" />
+          <Property Name="Receivable_AMT" Type="Double" Nullable="false" />
+          <Property Name="Total_Payable" Type="Double" Nullable="false" />
+          <Property Name="Due_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Status_Paid" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="hulomdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Loans" EntityType="Self.Loan" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hulomdbModelStoreContainer" CdmEntityContainer="hulomdbEntities">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="hulomdbModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Residency" ColumnName="Residency" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loans">
+            <EntityTypeMapping TypeName="hulomdbModel.Loan">
+              <MappingFragment StoreEntitySet="Loan">
+                <ScalarProperty Name="LoanID" ColumnName="LoanID" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Loan_AMT" ColumnName="Loan_AMT" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="NoOf_Payment" ColumnName="NoOf_Payment" />
+                <ScalarProperty Name="Deduction" ColumnName="Deduction" />
+                <ScalarProperty Name="Interested_AMT" ColumnName="Interested_AMT" />
+                <ScalarProperty Name="Receivable_AMT" ColumnName="Receivable_AMT" />
+                <ScalarProperty Name="Total_Payable" ColumnName="Total_Payable" />
+                <ScalarProperty Name="Due_Date" ColumnName="Due_Date" />
+                <ScalarProperty Name="Status_Paid" ColumnName="Status_Paid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
