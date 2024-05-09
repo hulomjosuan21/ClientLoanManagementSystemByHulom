@@ -34,6 +34,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             this.NoOfPaymentTextBox.TextChanged += new System.EventHandler(this.InputChanges);
             this.InsuranceTextBox.TextChanged += new System.EventHandler(this.InputChanges);
             this.OthersTextBox.TextChanged += new System.EventHandler(this.InputChanges);
+            this.TermComboBox.SelectedValueChanged += new System.EventHandler(this.InputChanges);
 
             this.LoanAmountTextBox.KeyPress += new KeyPressEventHandler(AddLoanForm
                 .CatchNonNumericInput);
@@ -107,6 +108,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             this.OthersTextBox.Name = "OthersTextBox";
             this.OthersTextBox.Size = new System.Drawing.Size(139, 27);
             this.OthersTextBox.TabIndex = 12;
+            this.OthersTextBox.Text = "0";
             // 
             // InsuranceTextBox
             // 
@@ -115,6 +117,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             this.InsuranceTextBox.Name = "InsuranceTextBox";
             this.InsuranceTextBox.Size = new System.Drawing.Size(172, 27);
             this.InsuranceTextBox.TabIndex = 11;
+            this.InsuranceTextBox.Text = "0";
             // 
             // label7
             // 
@@ -163,6 +166,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             this.NoOfPaymentTextBox.Name = "NoOfPaymentTextBox";
             this.NoOfPaymentTextBox.Size = new System.Drawing.Size(139, 27);
             this.NoOfPaymentTextBox.TabIndex = 6;
+            this.NoOfPaymentTextBox.Text = "0";
             // 
             // TermComboBox
             // 
@@ -200,6 +204,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             this.InterestTextBox.Name = "InterestTextBox";
             this.InterestTextBox.Size = new System.Drawing.Size(139, 27);
             this.InterestTextBox.TabIndex = 2;
+            this.InterestTextBox.Text = "0";
             // 
             // label1
             // 
@@ -218,6 +223,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             this.LoanAmountTextBox.Name = "LoanAmountTextBox";
             this.LoanAmountTextBox.Size = new System.Drawing.Size(190, 27);
             this.LoanAmountTextBox.TabIndex = 0;
+            this.LoanAmountTextBox.Text = "0";
             // 
             // panel2
             // 
