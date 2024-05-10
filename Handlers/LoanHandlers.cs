@@ -50,6 +50,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
         {
             try
             {
+                double interestedAmount = InterestedAmount(_loanAmount, _interest);
                 Loan addLoan = new Loan
                 {
                     ClientId = _clientId,
@@ -58,9 +59,9 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                     Term = _term.ToString(),
                     NoOf_Payment = _noOfPayment,
                     Deduction = _deduction,
-                    Interested_AMT = InterestedAmount(_loanAmount, _interest),
-                    Receivable_AMT = ReceivableAmount(_loanAmount, _interest),
-                    Total_Payable = TotalPayable(_loanAmount, InterestedAmount(_loanAmount, _interest), _deduction),
+                    Interested_AMT = interestedAmount,
+                    Receivable_AMT = ReceivableAmount(_loanAmount, interestedAmount),
+                    Total_Payable = TotalPayable(_loanAmount, interestedAmount, _deduction),
                     Due_Date = _dueDate,
                     Status_Paid = LoanStatus.Active.ToString()
                 };
@@ -122,7 +123,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
 
         public double InterestedAmount(double loanAmount, double interest) => (loanAmount * interest) / 100;
 
-        public double ReceivableAmount(double loanAmount, double interest) => (loanAmount + interest);
+        public double ReceivableAmount(double loanAmount, double interestedAmount) => (loanAmount + interestedAmount);
 
         public double TotalPayable(double loanAmount, double interestedAmount, double deduction) => (loanAmount + interestedAmount) - deduction;
     }

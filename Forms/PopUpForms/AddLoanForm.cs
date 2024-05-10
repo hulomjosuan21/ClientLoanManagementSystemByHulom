@@ -99,7 +99,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             Deduction = insurance + others;
 
             double interestedAmount = InterestedAmount(LoanAmount, Interest);
-            double receivableAmount = ReceivableAmount(LoanAmount, Interest);
+            double receivableAmount = ReceivableAmount(LoanAmount, interestedAmount);
             double totalPayable = TotalPayable(LoanAmount, interestedAmount, Deduction);
             DateTime dueDate = GetDueDate(NoOfPayment, SelectedTerm).Due;
 
@@ -121,14 +121,12 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 
         public static double ParseDoubleOrDefault(string input)
         {
-            double result;
-            return double.TryParse(input, out result) ? result : 0;
+            return double.TryParse(input, out double result) ? result : 0;
         }
 
         public static int ParseIntOrDefault(string input)
         {
-            int result;
-            return int.TryParse(input, out result) ? result : 0;
+            return int.TryParse(input, out int result) ? result : 0;
         }
 
         public (DateTime Start, DateTime Due) GetDueDate(int numberOfPayments, PaymentTerm frequency)
@@ -174,9 +172,9 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             return (Start: nextDueDate, Due: nextDueDate);
         }
 
-        public double InterestedAmount(double loanAmount, double interest) => (LoanAmount * Interest) / 100;
+        public double InterestedAmount(double loanAmount, double interest) => (LoanAmount * interest) / 100;
 
-        public double ReceivableAmount(double loanAmount, double interest) => (LoanAmount + Interest);
+        public double ReceivableAmount(double loanAmount, double interestedAmount) => (LoanAmount + interestedAmount);
 
         public double TotalPayable(double loanAmount, double interestedAmount, double deduction) => (loanAmount + interestedAmount) - deduction;
     }
