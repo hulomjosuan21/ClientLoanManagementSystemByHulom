@@ -100,8 +100,10 @@ namespace ClientLoanManagementSystemByHulom.Forms
 
                     if (result == DialogResult.Yes)
                     {
+                        LoanHandlers.DeleteLoanOfClient(id);
                         _clientDb.DeleteClient(id);
                         _getSelectedIds.Remove(id);
+                        
                     }
                 }
             }

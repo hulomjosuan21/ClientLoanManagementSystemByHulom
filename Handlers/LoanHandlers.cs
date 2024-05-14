@@ -2,6 +2,8 @@
 using ClientLoanManagementSystemByHulom.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,15 +17,11 @@ namespace ClientLoanManagementSystemByHulom.Handlers
         private readonly BindingSource _bindingSource;
 
         private readonly int _clientId;
-        protected readonly double _loanAmount;
-        protected readonly double _interest;
-        private readonly PaymentTerm _term;
-        private readonly int _noOfPayment;
-        private readonly double _deduction;
-        private readonly DateTime _dueDate;
-
-        public LoanHandlers()
-        { }
+        public decimal LoanAmount { get; set; }
+        public decimal Interest { get; set; }
+        public PaymentTerm Term { get; set; }
+        public int NoOfPayment { get; set; }
+        public decimal Deduction { get; set; }
 
         public static hulomdbEntities Con
         {
@@ -32,50 +30,75 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                 return new hulomdbEntities();
             }
         }
-        public LoanHandlers(int _clientId, double _loanAmount, double _interest, PaymentTerm _term, int _noOfPayment, double _deduction, BindingSource _bindingSource) : this()
+
+        public LoanHandlers(int _clientId, BindingSource _bindingSource)
         {
             _context = new hulomdbEntities();
             this._clientId = _clientId;
-            this._loanAmount = _loanAmount;
-            this._interest = _interest;
-            this._term = _term;
-            this._noOfPayment = _noOfPayment;
-            this._deduction = _deduction;
-            _dueDate = GetDueDate(this._noOfPayment, this._term).Due;
-
             this._bindingSource = _bindingSource;
+
+            _bindingSource.DataSource = new hulomdbEntities().Loans.Where(l => l.ClientID == _clientId).ToList();
         }
 
         public void AddLoanData()
         {
             try
             {
-                double interestedAmount = InterestedAmount(_loanAmount, _interest);
+                decimal interestedAmount = InterestedAmount(LoanAmount, Interest);
                 Loan addLoan = new Loan
                 {
-                    ClientId = _clientId,
-                    Loan_AMT = _loanAmount,
-                    Interest = _interest,
-                    Term = _term.ToString(),
-                    NoOf_Payment = _noOfPayment,
-                    Deduction = _deduction,
-                    Interested_AMT = interestedAmount,
-                    Receivable_AMT = ReceivableAmount(_loanAmount, interestedAmount),
-                    Total_Payable = TotalPayable(_loanAmount, interestedAmount, _deduction),
-                    Due_Date = _dueDate,
-                    Status_Paid = LoanStatus.Active.ToString()
+                    ClientID = _clientId,
+                    LoanAmount = LoanAmount,
+                    Interest = Interest,
+                    PaymentTerm = Term.ToString(),
+                    NoOfPayments = NoOfPayment,
+                    Deduction = Deduction,
+                    InterestedAmount = interestedAmount,
+                    ReceivableAmount = ReceivableAmount(LoanAmount, interestedAmount),
+                    TotalPayable = TotalPayable(LoanAmount, interestedAmount, Deduction),
+                    DueDate = GetDueDate(NoOfPayment, Term).Due,
+                    PaidStatus = LoanStatus.Ongoing.ToString()
                 };
 
                 _context.Loans.Add(addLoan);
                 _context.SaveChanges();
 
-                _bindingSource.DataSource = _context.Loans.Where(q => q.ClientId == _clientId).ToList();
+                _bindingSource.DataSource = _context.Loans.Where(q => q.ClientID == _clientId).ToList();
             }
             catch (Exception ex)
             {
                 _ = MessageBox.Show(ex.Message, ex.StackTrace, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        public static void DeleteLoanOfClient(int _id)
+        {
+            using (hulomdbEntities context = new hulomdbEntities())
+            {
+                List<Loan> loansToDelete = context.Loans.Where(loan => loan.ClientID == _id).ToList();
+
+                foreach (Loan loan in loansToDelete)
+                {
+                    context.Loans.Remove(loan);
+                }
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception) { }
+            }
+        }
+
+        public void SetStatus(int loanId, string stat)
+        {
+            Loan l = _context.Loans.Where(q => q.LoanID == loanId).FirstOrDefault();
+
+            l.PaidStatus = stat;
+            _context.SaveChanges();
+
+            _bindingSource.DataSource = _context.Loans.Where(q => q.ClientID == _clientId).ToList();
         }
 
         public (DateTime Start, DateTime Due) GetDueDate(int numberOfPayments, PaymentTerm frequency)
@@ -121,10 +144,10 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             return (Start: nextDueDate, Due: nextDueDate);
         }
 
-        public double InterestedAmount(double loanAmount, double interest) => (loanAmount * interest) / 100;
+        public decimal InterestedAmount(decimal loanAmount, decimal interest) => (loanAmount * interest) / 100;
 
-        public double ReceivableAmount(double loanAmount, double interestedAmount) => (loanAmount + interestedAmount);
+        public decimal ReceivableAmount(decimal loanAmount, decimal interestedAmount) => (loanAmount + interestedAmount);
 
-        public double TotalPayable(double loanAmount, double interestedAmount, double deduction) => (loanAmount + interestedAmount) - deduction;
+        public decimal TotalPayable(decimal loanAmount, decimal interestedAmount, decimal deduction) => (loanAmount + interestedAmount) - deduction;
     }
 }

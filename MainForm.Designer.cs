@@ -29,6 +29,7 @@ namespace ClientLoanManagementSystemByHulom
                 this.ParentPanel.Controls.RemoveAt(0);
             }
             Form f = form as Form;
+            this.Text = f.Text;
             f.TopLevel = false;
             f.Dock = DockStyle.Fill;
             this.ParentPanel.Controls.Add(f);
@@ -46,20 +47,25 @@ namespace ClientLoanManagementSystemByHulom
         {
             this.FooterSection = new System.Windows.Forms.Panel();
             this.SideBarSection = new System.Windows.Forms.Panel();
-            this.ParentPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.DashboardButton = new System.Windows.Forms.Button();
             this.ClientsButton = new System.Windows.Forms.Button();
+            this.DashboardButton = new System.Windows.Forms.Button();
+            this.ParentPanel = new System.Windows.Forms.Panel();
+            this.HeaderSection = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.FooterSection.SuspendLayout();
             this.SideBarSection.SuspendLayout();
+            this.HeaderSection.SuspendLayout();
             this.SuspendLayout();
             // 
             // FooterSection
             // 
-            this.FooterSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.FooterSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(65)))), ((int)(((byte)(0)))));
+            this.FooterSection.Controls.Add(this.label2);
             this.FooterSection.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.FooterSection.Location = new System.Drawing.Point(0, 422);
+            this.FooterSection.Location = new System.Drawing.Point(0, 432);
             this.FooterSection.Name = "FooterSection";
-            this.FooterSection.Size = new System.Drawing.Size(800, 28);
+            this.FooterSection.Size = new System.Drawing.Size(800, 18);
             this.FooterSection.TabIndex = 0;
             // 
             // SideBarSection
@@ -67,44 +73,12 @@ namespace ClientLoanManagementSystemByHulom
             this.SideBarSection.BackColor = System.Drawing.Color.White;
             this.SideBarSection.Controls.Add(this.ClientsButton);
             this.SideBarSection.Controls.Add(this.DashboardButton);
-            this.SideBarSection.Controls.Add(this.panel1);
             this.SideBarSection.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SideBarSection.Location = new System.Drawing.Point(0, 0);
+            this.SideBarSection.Location = new System.Drawing.Point(0, 36);
             this.SideBarSection.Name = "SideBarSection";
-            this.SideBarSection.Size = new System.Drawing.Size(150, 422);
+            this.SideBarSection.Padding = new System.Windows.Forms.Padding(0, 24, 0, 0);
+            this.SideBarSection.Size = new System.Drawing.Size(150, 396);
             this.SideBarSection.TabIndex = 1;
-            // 
-            // ParentPanel
-            // 
-            this.ParentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ParentPanel.Location = new System.Drawing.Point(150, 0);
-            this.ParentPanel.Name = "ParentPanel";
-            this.ParentPanel.Size = new System.Drawing.Size(650, 422);
-            this.ParentPanel.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Gainsboro;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(150, 71);
-            this.panel1.TabIndex = 0;
-            // 
-            // DashboardButton
-            // 
-            this.DashboardButton.AutoSize = true;
-            this.DashboardButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DashboardButton.FlatAppearance.BorderSize = 0;
-            this.DashboardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DashboardButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DashboardButton.Location = new System.Drawing.Point(0, 71);
-            this.DashboardButton.Name = "DashboardButton";
-            this.DashboardButton.Size = new System.Drawing.Size(150, 29);
-            this.DashboardButton.TabIndex = 0;
-            this.DashboardButton.Text = "Dashboard";
-            this.DashboardButton.UseVisualStyleBackColor = true;
-            this.DashboardButton.Click += new System.EventHandler(this.DashboardButton_Click);
             // 
             // ClientsButton
             // 
@@ -113,13 +87,70 @@ namespace ClientLoanManagementSystemByHulom
             this.ClientsButton.FlatAppearance.BorderSize = 0;
             this.ClientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClientsButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClientsButton.Location = new System.Drawing.Point(0, 100);
+            this.ClientsButton.Location = new System.Drawing.Point(0, 53);
             this.ClientsButton.Name = "ClientsButton";
             this.ClientsButton.Size = new System.Drawing.Size(150, 29);
             this.ClientsButton.TabIndex = 1;
             this.ClientsButton.Text = "Clients";
             this.ClientsButton.UseVisualStyleBackColor = true;
             this.ClientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
+            // 
+            // DashboardButton
+            // 
+            this.DashboardButton.AutoSize = true;
+            this.DashboardButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DashboardButton.FlatAppearance.BorderSize = 0;
+            this.DashboardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DashboardButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DashboardButton.Location = new System.Drawing.Point(0, 24);
+            this.DashboardButton.Name = "DashboardButton";
+            this.DashboardButton.Size = new System.Drawing.Size(150, 29);
+            this.DashboardButton.TabIndex = 0;
+            this.DashboardButton.Text = "Dashboard";
+            this.DashboardButton.UseVisualStyleBackColor = true;
+            this.DashboardButton.Click += new System.EventHandler(this.DashboardButton_Click);
+            // 
+            // ParentPanel
+            // 
+            this.ParentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.ParentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ParentPanel.Location = new System.Drawing.Point(150, 36);
+            this.ParentPanel.Name = "ParentPanel";
+            this.ParentPanel.Size = new System.Drawing.Size(650, 396);
+            this.ParentPanel.TabIndex = 2;
+            // 
+            // HeaderSection
+            // 
+            this.HeaderSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(33)))), ((int)(((byte)(94)))));
+            this.HeaderSection.Controls.Add(this.label1);
+            this.HeaderSection.Dock = System.Windows.Forms.DockStyle.Top;
+            this.HeaderSection.Location = new System.Drawing.Point(0, 0);
+            this.HeaderSection.Name = "HeaderSection";
+            this.HeaderSection.Size = new System.Drawing.Size(800, 36);
+            this.HeaderSection.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(800, 36);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "CLMS";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(800, 18);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Client Loan Management System v1.0. Created By: Josuan Leonardo Hulom BSIT 2A";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -129,14 +160,17 @@ namespace ClientLoanManagementSystemByHulom
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.ParentPanel);
             this.Controls.Add(this.SideBarSection);
+            this.Controls.Add(this.HeaderSection);
             this.Controls.Add(this.FooterSection);
             this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Client Loan Management System By Josuan";
+            this.Text = "Josuan Leonardo Hulom BSIT 2A";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.FooterSection.ResumeLayout(false);
             this.SideBarSection.ResumeLayout(false);
             this.SideBarSection.PerformLayout();
+            this.HeaderSection.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -146,9 +180,11 @@ namespace ClientLoanManagementSystemByHulom
         private System.Windows.Forms.Panel FooterSection;
         private System.Windows.Forms.Panel SideBarSection;
         private System.Windows.Forms.Panel ParentPanel;
-        private Panel panel1;
         private Button DashboardButton;
         private Button ClientsButton;
+        private Panel HeaderSection;
+        private Label label1;
+        private Label label2;
     }
 }
 

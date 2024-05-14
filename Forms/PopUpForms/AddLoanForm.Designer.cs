@@ -256,7 +256,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(139, 140);
             this.label8.TabIndex = 17;
-            this.label8.Text = "Loan Amount:\r\nReceivable Amount:\r\nDeduction:\r\nDue Date:\r\nTotal Payable:";
+            this.label8.Text = "Interested Amount:\r\nReceivable Amount:\r\nDeduction:\r\nDue Date:\r\nTotal Payable:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CancelButton

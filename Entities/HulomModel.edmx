@@ -4,74 +4,107 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="hulomdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="hulomdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Firstname" Type="varchar" MaxLength="45" />
-          <Property Name="Lastname" Type="varchar" MaxLength="45" />
-          <Property Name="Residency" Type="varchar" MaxLength="200" />
-          <Property Name="Birthday" Type="date" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Firstname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Residency" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Birthdate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Loan">
           <Key>
             <PropertyRef Name="LoanID" />
           </Key>
           <Property Name="LoanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientId" Type="int" Nullable="false" />
-          <Property Name="Loan_AMT" Type="float" Nullable="false" />
-          <Property Name="Interest" Type="float" />
-          <Property Name="Term" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="NoOf_Payment" Type="int" Nullable="false" />
-          <Property Name="Deduction" Type="float" Nullable="false" />
-          <Property Name="Interested_AMT" Type="float" Nullable="false" />
-          <Property Name="Receivable_AMT" Type="float" Nullable="false" />
-          <Property Name="Total_Payable" Type="float" Nullable="false" />
-          <Property Name="Due_Date" Type="date" Nullable="false" />
-          <Property Name="Status_Paid" Type="varchar" MaxLength="25" />
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="LoanAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Interest" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="NoOfPayments" Type="int" Nullable="false" />
+          <Property Name="PaymentTerm" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Deduction" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="InterestedAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ReceivableAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="TotalPayable" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DueDate" Type="datetime" Nullable="false" />
+          <Property Name="PaidStatus" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Loan__ClientID__2DE6D218">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="hulomdbModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Loan" EntityType="Self.Loan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Loan__ClientID__2DE6D218" Association="Self.FK__Loan__ClientID__2DE6D218">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Loan" EntitySet="Loan" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="hulomdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="hulomdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="hulomdbModel.Client" />
+          <EntitySet Name="Loans" EntityType="hulomdbModel.Loan" />
+          <AssociationSet Name="FK__Loan__ClientID__2DE6D218" Association="hulomdbModel.FK__Loan__ClientID__2DE6D218">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Loan" EntitySet="Loans" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Client">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Firstname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Lastname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Residency" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Residency" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Birthdate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Loans" Relationship="hulomdbModel.FK__Loan__ClientID__2DE6D218" FromRole="Client" ToRole="Loan" />
         </EntityType>
         <EntityType Name="Loan">
           <Key>
             <PropertyRef Name="LoanID" />
           </Key>
           <Property Name="LoanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="Loan_AMT" Type="Double" Nullable="false" />
-          <Property Name="Interest" Type="Double" />
-          <Property Name="Term" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NoOf_Payment" Type="Int32" Nullable="false" />
-          <Property Name="Deduction" Type="Double" Nullable="false" />
-          <Property Name="Interested_AMT" Type="Double" Nullable="false" />
-          <Property Name="Receivable_AMT" Type="Double" Nullable="false" />
-          <Property Name="Total_Payable" Type="Double" Nullable="false" />
-          <Property Name="Due_Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Status_Paid" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <Property Name="LoanAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Interest" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="NoOfPayments" Type="Int32" Nullable="false" />
+          <Property Name="PaymentTerm" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Deduction" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="InterestedAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ReceivableAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TotalPayable" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaidStatus" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Client" Relationship="hulomdbModel.FK__Loan__ClientID__2DE6D218" FromRole="Loan" ToRole="Client" />
         </EntityType>
-        <EntityContainer Name="hulomdbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Clients" EntityType="Self.Client" />
-          <EntitySet Name="Loans" EntityType="Self.Loan" />
-        </EntityContainer>
+        <Association Name="FK__Loan__ClientID__2DE6D218">
+          <End Type="hulomdbModel.Client" Role="Client" Multiplicity="1" />
+          <End Type="hulomdbModel.Loan" Role="Loan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Loan">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -81,29 +114,29 @@
           <EntitySetMapping Name="Clients">
             <EntityTypeMapping TypeName="hulomdbModel.Client">
               <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
-                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
                 <ScalarProperty Name="Residency" ColumnName="Residency" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Loans">
             <EntityTypeMapping TypeName="hulomdbModel.Loan">
               <MappingFragment StoreEntitySet="Loan">
-                <ScalarProperty Name="LoanID" ColumnName="LoanID" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="Loan_AMT" ColumnName="Loan_AMT" />
-                <ScalarProperty Name="Interest" ColumnName="Interest" />
-                <ScalarProperty Name="Term" ColumnName="Term" />
-                <ScalarProperty Name="NoOf_Payment" ColumnName="NoOf_Payment" />
+                <ScalarProperty Name="PaidStatus" ColumnName="PaidStatus" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="TotalPayable" ColumnName="TotalPayable" />
+                <ScalarProperty Name="ReceivableAmount" ColumnName="ReceivableAmount" />
+                <ScalarProperty Name="InterestedAmount" ColumnName="InterestedAmount" />
                 <ScalarProperty Name="Deduction" ColumnName="Deduction" />
-                <ScalarProperty Name="Interested_AMT" ColumnName="Interested_AMT" />
-                <ScalarProperty Name="Receivable_AMT" ColumnName="Receivable_AMT" />
-                <ScalarProperty Name="Total_Payable" ColumnName="Total_Payable" />
-                <ScalarProperty Name="Due_Date" ColumnName="Due_Date" />
-                <ScalarProperty Name="Status_Paid" ColumnName="Status_Paid" />
+                <ScalarProperty Name="PaymentTerm" ColumnName="PaymentTerm" />
+                <ScalarProperty Name="NoOfPayments" ColumnName="NoOfPayments" />
+                <ScalarProperty Name="Interest" ColumnName="Interest" />
+                <ScalarProperty Name="LoanAmount" ColumnName="LoanAmount" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="LoanID" ColumnName="LoanID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -33,7 +33,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                 Firstname = firstname,
                 Lastname = lastname,
                 Residency = residency,
-                Birthday = date
+                Birthdate = date
             };
 
             _ = _context.Clients.Add(addClient);
@@ -44,7 +44,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
 
         public void UpdateClient(int _id, int colIndex, object newVal)
         {
-            Client selectedClient = _context.Clients.FirstOrDefault(q => q.Id == _id);
+            Client selectedClient = _context.Clients.FirstOrDefault(q => q.ID == _id);
 
             switch (colIndex)
             {
@@ -58,7 +58,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                     selectedClient.Residency = (string)newVal;
                     break;
                 case 3:
-                    selectedClient.Birthday = (DateTime)newVal;
+                    selectedClient.Birthdate = (DateTime)newVal;
                     break;
                 default:
                     break;
@@ -70,7 +70,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
 
         public void DeleteClient(int _id)
         {
-            Client itemToDelete = _context.Clients.Where(q => q.Id == _id).FirstOrDefault();
+            Client itemToDelete = _context.Clients.Where(q => q.ID == _id).FirstOrDefault();
 
             _ = _context.Clients.Remove(itemToDelete);
 
@@ -86,18 +86,18 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                 bool isBirthDate = DateTime.TryParse(text, out DateTime birthDate);
 
                 var result = Con.Clients
-                    .Where(c => (isId && c.Id == id) ||
+                    .Where(c => (isId && c.ID == id) ||
                                 c.Firstname.Contains(text) ||
                                 c.Lastname.Contains(text) ||
                                 c.Residency.Contains(text) ||
-                                (isBirthDate && c.Birthday == birthDate))
+                                (isBirthDate && c.Birthdate == birthDate))
                     .Select(c => new
                     {
-                        c.Id,
+                        c.ID,
                         c.Firstname,
                         c.Lastname,
                         c.Residency,
-                        c.Birthday
+                        c.Birthdate
                     })
                     .ToList();
 

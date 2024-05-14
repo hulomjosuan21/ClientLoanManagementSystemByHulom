@@ -13,6 +13,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 {
     public partial class SetStatusForm : Form
     {
+        public string SelectedStatus = LoanStatus.Ongoing.ToString();
         public SetStatusForm()
         {
             InitializeComponent();
@@ -42,6 +43,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 
         private void SetButton_Click(object sender, EventArgs e)
         {
+            SelectedStatus = ComboBox.SelectedItem.ToString();
             DialogResult = DialogResult.OK;
         }
 

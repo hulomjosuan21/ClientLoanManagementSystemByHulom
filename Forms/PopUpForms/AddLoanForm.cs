@@ -13,13 +13,13 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 {
     public partial class AddLoanForm : Form, LoanCalculations
     {
-        private const double MIN_LOAN = 1000;
+        private const decimal MIN_LOAN = 1000;
 
-        public double LoanAmount { get; set; }
-        public double Interest { get; set; }
+        public decimal LoanAmount { get; set; }
+        public decimal Interest { get; set; }
         public PaymentTerm SelectedTerm { get; set; }
         public int NoOfPayment { get; set; }
-        public double Deduction { get; set; }
+        public decimal Deduction { get; set; }
 
         public AddLoanForm()
         {
@@ -89,18 +89,18 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 
         private void InputChanges(object sender, EventArgs e)
         {
-            LoanAmount = AddLoanForm.ParseDoubleOrDefault(LoanAmountTextBox.Text.Trim());
-            Interest = AddLoanForm.ParseDoubleOrDefault(InterestTextBox.Text.Trim());
+            LoanAmount = AddLoanForm.ParseDecimalOrDefault(LoanAmountTextBox.Text.Trim());
+            Interest = AddLoanForm.ParseDecimalOrDefault(InterestTextBox.Text.Trim());
             NoOfPayment = AddLoanForm.ParseIntOrDefault(NoOfPaymentTextBox.Text.Trim());
-            double insurance = AddLoanForm.ParseDoubleOrDefault(InsuranceTextBox.Text.Trim());
-            double others = AddLoanForm.ParseDoubleOrDefault(OthersTextBox.Text.Trim());
+            decimal insurance = AddLoanForm.ParseDecimalOrDefault(InsuranceTextBox.Text.Trim());
+            decimal others = AddLoanForm.ParseDecimalOrDefault(OthersTextBox.Text.Trim());
 
             SelectedTerm = (PaymentTerm)TermComboBox.SelectedItem;
             Deduction = insurance + others;
 
-            double interestedAmount = InterestedAmount(LoanAmount, Interest);
-            double receivableAmount = ReceivableAmount(LoanAmount, interestedAmount);
-            double totalPayable = TotalPayable(LoanAmount, interestedAmount, Deduction);
+            decimal interestedAmount = InterestedAmount(LoanAmount, Interest);
+            decimal receivableAmount = ReceivableAmount(LoanAmount, interestedAmount);
+            decimal totalPayable = TotalPayable(LoanAmount, interestedAmount, Deduction);
             DateTime dueDate = GetDueDate(NoOfPayment, SelectedTerm).Due;
 
             AmountsLabel.Text = $"\n₱ {interestedAmount}\n₱ {receivableAmount}\n₱ {Deduction}\n{dueDate:MM/dd/yyyy}\n₱ {totalPayable}\n";
@@ -119,9 +119,9 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             }
         }
 
-        public static double ParseDoubleOrDefault(string input)
+        public static decimal ParseDecimalOrDefault(string input)
         {
-            return double.TryParse(input, out double result) ? result : 0;
+            return decimal.TryParse(input, out decimal result) ? result : 0;
         }
 
         public static int ParseIntOrDefault(string input)
@@ -172,10 +172,10 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             return (Start: nextDueDate, Due: nextDueDate);
         }
 
-        public double InterestedAmount(double loanAmount, double interest) => (LoanAmount * interest) / 100;
+        public decimal InterestedAmount(decimal loanAmount, decimal interest) => (loanAmount * interest) / 100;
 
-        public double ReceivableAmount(double loanAmount, double interestedAmount) => (LoanAmount + interestedAmount);
+        public decimal ReceivableAmount(decimal loanAmount, decimal interestedAmount) => (loanAmount + interestedAmount);
 
-        public double TotalPayable(double loanAmount, double interestedAmount, double deduction) => (loanAmount + interestedAmount) - deduction;
+        public decimal TotalPayable(decimal loanAmount, decimal interestedAmount, decimal deduction) => (loanAmount + interestedAmount) - deduction;
     }
 }

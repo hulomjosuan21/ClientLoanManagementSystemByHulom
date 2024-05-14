@@ -8,10 +8,10 @@ namespace ClientLoanManagementSystemByHulom.Utilities
 {
     internal interface LoanCalculations
     {
-        double InterestedAmount(double loanAmount, double interest);
-        double ReceivableAmount(double loanAmount, double interestedAmount);
+        decimal InterestedAmount(decimal loanAmount, decimal interest);
+        decimal ReceivableAmount(decimal loanAmount, decimal interestedAmount);
 
-        double TotalPayable(double loanAmount, double interestedAmount, double deduction);
+        decimal TotalPayable(decimal loanAmount, decimal interestedAmount, decimal deduction);
 
         (DateTime Start, DateTime Due) GetDueDate(int numberOfPayments,PaymentTerm frequency);
     }

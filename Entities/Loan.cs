@@ -15,16 +15,18 @@ namespace ClientLoanManagementSystemByHulom.Entities
     public partial class Loan
     {
         public int LoanID { get; set; }
-        public int ClientId { get; set; }
-        public double Loan_AMT { get; set; }
-        public Nullable<double> Interest { get; set; }
-        public string Term { get; set; }
-        public int NoOf_Payment { get; set; }
-        public double Deduction { get; set; }
-        public double Interested_AMT { get; set; }
-        public double Receivable_AMT { get; set; }
-        public double Total_Payable { get; set; }
-        public System.DateTime Due_Date { get; set; }
-        public string Status_Paid { get; set; }
+        public int ClientID { get; set; }
+        public decimal LoanAmount { get; set; }
+        public decimal Interest { get; set; }
+        public int NoOfPayments { get; set; }
+        public string PaymentTerm { get; set; }
+        public decimal Deduction { get; set; }
+        public decimal InterestedAmount { get; set; }
+        public decimal ReceivableAmount { get; set; }
+        public decimal TotalPayable { get; set; }
+        public System.DateTime DueDate { get; set; }
+        public string PaidStatus { get; set; }
+    
+        public virtual Client Client { get; set; }
     }
 }

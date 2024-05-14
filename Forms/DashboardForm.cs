@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientLoanManagementSystemByHulom.Handlers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,11 @@ namespace ClientLoanManagementSystemByHulom.Forms
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void DashboardForm_Load(object sender, EventArgs e)
+        {
+            TotalClientsLabel.Text = RecordHandler.GetTotal()._Clients.ToString();
         }
     }
 }
