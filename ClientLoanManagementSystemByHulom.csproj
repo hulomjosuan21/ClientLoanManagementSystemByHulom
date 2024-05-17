@@ -115,7 +115,6 @@
     </Compile>
     <Compile Include="Handlers\ClientHandler.cs" />
     <Compile Include="Handlers\LoanHandlers.cs" />
-    <Compile Include="Handlers\RecordHandler.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +180,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\CCS_LOGO.png" />
     <Content Include="Entities\HulomModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HulomModel.Context.cs</LastGenOutput>

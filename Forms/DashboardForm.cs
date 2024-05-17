@@ -1,4 +1,5 @@
-﻿using ClientLoanManagementSystemByHulom.Handlers;
+﻿using ClientLoanManagementSystemByHulom.Entities;
+using ClientLoanManagementSystemByHulom.Handlers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,14 +19,24 @@ namespace ClientLoanManagementSystemByHulom.Forms
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void DashboardForm_Load(object sender, EventArgs e)
         {
-            TotalClientsLabel.Text = RecordHandler.GetTotal()._Clients.ToString();
+            TotalClientsLabel.Text = GetVal._TotalClients.ToString();
+            TotalLoanLabel.Text = GetVal._TotalLoans.ToString();
+        }
+
+        private (int _TotalClients, decimal _TotalLoans) GetVal
+        {
+            get
+            {
+                using (hulomdbEntities con = new hulomdbEntities())
+                {
+                    int getTotalClient = con.Clients.Count();
+                    int getTotalLoan = con.Loans.Count();
+
+                    return (_TotalClients: getTotalClient, _TotalLoans: getTotalLoan);
+                }
+            }
         }
     }
 }

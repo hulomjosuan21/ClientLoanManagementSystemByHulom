@@ -98,7 +98,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(357, 184);
+            this.panel1.Size = new System.Drawing.Size(357, 182);
             this.panel1.TabIndex = 0;
             // 
             // OthersTextBox
@@ -235,7 +235,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(357, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(254, 184);
+            this.panel2.Size = new System.Drawing.Size(254, 182);
             this.panel2.TabIndex = 1;
             // 
             // AmountsLabel
@@ -262,10 +262,11 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             // CancelButton
             // 
             this.CancelButton.AutoSize = true;
-            this.CancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.CancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(165)))), ((int)(((byte)(22)))));
             this.CancelButton.FlatAppearance.BorderSize = 0;
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelButton.ForeColor = System.Drawing.Color.White;
             this.CancelButton.Location = new System.Drawing.Point(125, 152);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(129, 31);
@@ -277,10 +278,11 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             // AddButton
             // 
             this.AddButton.AutoSize = true;
-            this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(146)))), ((int)(((byte)(227)))));
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddButton.ForeColor = System.Drawing.Color.White;
             this.AddButton.Location = new System.Drawing.Point(0, 152);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(128, 31);
@@ -293,16 +295,16 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 184);
+            this.ClientSize = new System.Drawing.Size(611, 182);
             this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MaximumSize = new System.Drawing.Size(627, 223);
-            this.MinimumSize = new System.Drawing.Size(627, 223);
+            this.MaximumSize = new System.Drawing.Size(627, 221);
+            this.MinimumSize = new System.Drawing.Size(627, 221);
             this.Name = "AddLoanForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AddLoanForm";
+            this.Text = "Add Loan";
             this.Load += new System.EventHandler(this.AddLoanForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

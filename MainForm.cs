@@ -12,6 +12,7 @@ namespace ClientLoanManagementSystemByHulom
 {
     public partial class MainForm : Form
     {
+
         public MainForm()
         {
             InitializeComponent();
@@ -21,6 +22,7 @@ namespace ClientLoanManagementSystemByHulom
         {
             WindowState = FormWindowState.Maximized;
             LoadForm(new Forms.DashboardForm());
+            
         }
 
         private void DashboardButton_Click(object sender, EventArgs e)

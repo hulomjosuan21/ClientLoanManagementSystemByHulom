@@ -26,7 +26,5 @@ namespace ClientLoanManagementSystemByHulom.Entities
         public decimal TotalPayable { get; set; }
         public System.DateTime DueDate { get; set; }
         public string PaidStatus { get; set; }
-    
-        public virtual Client Client { get; set; }
     }
 }

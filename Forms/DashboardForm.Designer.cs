@@ -36,7 +36,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.TotalLoanLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TotalClientsLabel = new System.Windows.Forms.Label();
@@ -88,7 +88,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(190, 103);
             this.label8.TabIndex = 6;
-            this.label8.Text = "0";
+            this.label8.Text = "?";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
@@ -99,9 +99,9 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(4, 4);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 19);
+            this.label9.Size = new System.Drawing.Size(16, 19);
             this.label9.TabIndex = 5;
-            this.label9.Text = "N/A";
+            this.label9.Text = "?";
             // 
             // panel3
             // 
@@ -124,7 +124,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(188, 103);
             this.label6.TabIndex = 6;
-            this.label6.Text = "0";
+            this.label6.Text = "?";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
@@ -135,14 +135,14 @@
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(4, 4);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 19);
+            this.label7.Size = new System.Drawing.Size(16, 19);
             this.label7.TabIndex = 5;
-            this.label7.Text = "N/A";
+            this.label7.Text = "?";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(188)))), ((int)(((byte)(139)))));
-            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.TotalLoanLabel);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(205, 3);
@@ -151,17 +151,17 @@
             this.panel2.Size = new System.Drawing.Size(194, 130);
             this.panel2.TabIndex = 6;
             // 
-            // label4
+            // TotalLoanLabel
             // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(4, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(186, 103);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "343242323";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TotalLoanLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TotalLoanLabel.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalLoanLabel.ForeColor = System.Drawing.Color.White;
+            this.TotalLoanLabel.Location = new System.Drawing.Point(4, 23);
+            this.TotalLoanLabel.Name = "TotalLoanLabel";
+            this.TotalLoanLabel.Size = new System.Drawing.Size(186, 103);
+            this.TotalLoanLabel.TabIndex = 6;
+            this.TotalLoanLabel.Text = "343242323";
+            this.TotalLoanLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
@@ -171,9 +171,9 @@
             this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(4, 4);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 19);
+            this.label5.Size = new System.Drawing.Size(86, 19);
             this.label5.TabIndex = 5;
-            this.label5.Text = "Total Loan";
+            this.label5.Text = "Total Loans";
             // 
             // panel1
             // 
@@ -240,15 +240,15 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label TotalLoanLabel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label TotalClientsLabel;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label TotalClientsLabel;
     }
 }

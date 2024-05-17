@@ -14,6 +14,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
     public partial class SetStatusForm : Form
     {
         public string SelectedStatus = LoanStatus.Ongoing.ToString();
+
         public SetStatusForm()
         {
             InitializeComponent();

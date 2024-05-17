@@ -3,22 +3,62 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClientLoanManagementSystemByHulom.Handlers
 {
-    internal class ClientHandler
+    internal class ClientHandler : IDisposable
     {
         private readonly hulomdbEntities _context;
         private readonly BindingSource _bindingSource;
-        public ClientHandler(BindingSource _bindingSource)
+        private readonly bool _filter;
+        public ClientHandler(BindingSource _bindingSource, bool _filter = true)
         {
             _context = new hulomdbEntities();
             this._bindingSource = _bindingSource;
+            this._filter = _filter;
+            RefreshBindingSource();
+        }
 
-            _bindingSource.DataSource = _context.Clients.ToList();
+        private void RefreshBindingSource()
+        {
+            if (_filter)
+            {
+                int[] ids = GetClientIdsSortedByLoanAmount;
+
+                List<Client> clients = _context.Clients
+                    .Where(client => ids.Contains(client.ID))
+                    .ToList()
+                    .OrderBy(client => Array.IndexOf(ids, client.ID))
+                    .ToList();
+
+                _bindingSource.DataSource = clients;
+            }
+            else
+            {
+                _bindingSource.DataSource = _context.Clients.ToList();
+            }
+        }
+
+        private int[] GetClientIdsSortedByLoanAmount
+        {
+            get
+            { 
+                using (hulomdbEntities _con = new hulomdbEntities())
+                {
+                    var clientLoanTotals = _con.Loans
+                        .GroupBy(l => l.ClientID)
+                        .Select(g => new
+                        {
+                            ClientID = g.Key,
+                            TotalLoanAmount = g.Sum(l => l.LoanAmount)
+                        })
+                        .OrderByDescending(x => x.TotalLoanAmount)
+                        .ToList();
+
+                    return clientLoanTotals.Select(x => x.ClientID).ToArray();
+                }
+            }
         }
 
         public static hulomdbEntities Con
@@ -39,7 +79,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             _ = _context.Clients.Add(addClient);
             _context.SaveChanges();
 
-            _bindingSource.DataSource = Con.Clients.ToList();
+            RefreshBindingSource();
         }
 
         public void UpdateClient(int _id, int colIndex, object newVal)
@@ -65,7 +105,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             }
 
             _context.SaveChanges();
-            _bindingSource.DataSource = Con.Clients.ToList();
+            RefreshBindingSource();
         }
 
         public void DeleteClient(int _id)
@@ -75,7 +115,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             _ = _context.Clients.Remove(itemToDelete);
 
             _context.SaveChanges();
-            _bindingSource.DataSource = Con.Clients.ToList();
+            RefreshBindingSource();
         }
 
         public void SearchClient(string text)
@@ -104,6 +144,11 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                 _bindingSource.DataSource = result;
             }
             catch (Exception) { }
+        }
+
+        public void Dispose()
+        {
+            _context?.Dispose();
         }
     }
 }

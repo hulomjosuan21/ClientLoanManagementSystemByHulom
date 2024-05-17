@@ -5,9 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3b8e6fd8a6ac4aa2a3a06c11588fafe1" Name="Diagram1">
-        <EntityTypeShape EntityType="hulomdbModel.Client" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="hulomdbModel.Loan" Width="1.5" PointX="3" PointY="0.875" />
-        <AssociationConnector Association="hulomdbModel.FK__Loan__ClientID__2DE6D218" />
+        <EntityTypeShape EntityType="hulomdbModel.Client" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="hulomdbModel.Loan" Width="1.5" PointX="2.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,6 +1,7 @@
 ﻿using ClientLoanManagementSystemByHulom.Entities;
 using ClientLoanManagementSystemByHulom.Forms.PopUpForms;
 using ClientLoanManagementSystemByHulom.Handlers;
+using ClientLoanManagementSystemByHulom.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +17,10 @@ namespace ClientLoanManagementSystemByHulom.Forms
     public partial class LoanForm : Form
     {
         private const string CURRENCY = "en-PH";
-        private int _currentClientId;
+
+        private readonly int _currentClientId;
         private LoanHandlers _loanDb;
+
         public LoanForm(int _currentClientId = 0)
         {
             InitializeComponent();
@@ -25,40 +28,56 @@ namespace ClientLoanManagementSystemByHulom.Forms
             this._currentClientId = _currentClientId;
 
         }
-
-        protected override void WndProc(ref Message message)
-        {
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_MOVE = 0xF010;
-
-            switch (message.Msg)
-            {
-                case WM_SYSCOMMAND:
-                    int command = message.WParam.ToInt32() & 0xfff0;
-                    if (command == SC_MOVE)
-                        return;
-                    break;
-            }
-
-            base.WndProc(ref message);
-        }
-        
+     
         private void LoanForm_Load(object sender, EventArgs e)
         {
             Text = $"Cliend ID #{_currentClientId}";
-            _loanDb = new LoanHandlers(_currentClientId,loanBindingSource);
+            _loanDb = new LoanHandlers(_currentClientId, loanBindingSource)
+            {
+                AutoSetPenalized = (true, _currentClientId)
+            };
+
+            totalLoanLabel.Text = ClientInfo._TotalLoan.ToString();
+            totalPayableLabel.Text = ClientInfo._TotalPayable.ToString();
+            totalReceivableLabel.Text = ClientInfo._TotalReceivable.ToString();
+            ongoingLoansLabel.Text = ClientInfo._TotalOngoing.ToString();
+        }
+
+        private (int _TotalLoan, decimal _TotalPayable, decimal _TotalReceivable, int _TotalOngoing) ClientInfo
+        {
+            get
+            {
+                using (hulomdbEntities con = new hulomdbEntities())
+                {
+                    int totalLoan = con.Loans.Count(l => l.ClientID == _currentClientId);
+
+                    decimal? totalPayableNullable = con.Loans.Where(s => s.ClientID == _currentClientId && s.PaidStatus != LoanStatus.Paid.ToString()).Sum(s => (decimal?)s.TotalPayable);
+                    decimal totalPayable = totalPayableNullable ?? 0;
+
+                    decimal? totalRecNullable = con.Loans.Where(s => s.ClientID == _currentClientId).Sum(s => (decimal?)s.ReceivableAmount);
+                    decimal totalRec = totalRecNullable ?? 0;
+
+                    int countOngoing = con.Loans.Where(l => l.ClientID == _currentClientId && l.PaidStatus == LoanStatus.Ongoing.ToString()).Count();
+
+                    return (_TotalLoan: totalLoan, _TotalPayable: totalPayable, _TotalReceivable: totalRec, _TotalOngoing: countOngoing);
+                }
+            }
         }
 
         private void StatusButton_Click(object sender, EventArgs e)
         {
             SetStatusForm getStatus = new SetStatusForm();
+            getStatus.Text = $"Select Loan Status for Loan ID #{_loanId}";
             if (getStatus.ShowDialog() == DialogResult.OK)
             {
                 _loanDb.SetStatus(_loanId, getStatus.SelectedStatus.ToString());
+                totalPayableLabel.Text = ClientInfo._TotalPayable.ToString();
+                totalReceivableLabel.Text = ClientInfo._TotalReceivable.ToString();
+                ongoingLoansLabel.Text = ClientInfo._TotalOngoing.ToString();
             }
         }
 
-            private void AddButton_Click(object sender, EventArgs e)
+        private void AddButton_Click(object sender, EventArgs e)
         {
             AddLoanForm newLoan = new AddLoanForm();
             if (newLoan.ShowDialog() == DialogResult.Yes)
@@ -69,6 +88,11 @@ namespace ClientLoanManagementSystemByHulom.Forms
                 _loanDb.NoOfPayment = newLoan.NoOfPayment;
                 _loanDb.Deduction = newLoan.Deduction;
                 _loanDb.AddLoanData();
+
+                totalLoanLabel.Text = ClientInfo._TotalLoan.ToString();
+                totalPayableLabel.Text = ClientInfo._TotalPayable.ToString();
+                totalReceivableLabel.Text = ClientInfo._TotalReceivable.ToString();
+                ongoingLoansLabel.Text = ClientInfo._TotalOngoing.ToString();
             }
         }
 
@@ -112,5 +136,6 @@ namespace ClientLoanManagementSystemByHulom.Forms
 
             _loanId = (int)LoanTable.SelectedRows[0].Cells[0].Value;
         }
+
     }
 }

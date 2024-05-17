@@ -14,16 +14,17 @@ namespace ClientLoanManagementSystemByHulom.Forms
 {
     public partial class ClientForm : Form
     {
-        private readonly ClientHandler _clientDb;
+
+        private ClientHandler _clientDb;
+
         public ClientForm()
         {
             InitializeComponent();
-            _clientDb = new ClientHandler(clientBindingSource);
         }
 
         private void ClientForm_Load(object sender, EventArgs e)
         {
-            
+            _clientDb = new ClientHandler(clientBindingSource);
         }
 
         private void ViewLoanButton_Click(object sender, EventArgs e)
@@ -70,22 +71,26 @@ namespace ClientLoanManagementSystemByHulom.Forms
 
         private void UpdateButton_Click(object sender, EventArgs e)
         {
-            if (_getSelectedCol > 0 && _getSelectedId > 0 && !_getNewCellVal.Equals(null))
+            try
             {
-                if (!_getNewCellVal.ToString().Equals(_getOldCellVal.ToString(), StringComparison.OrdinalIgnoreCase))
+                if (_getSelectedCol > 0 && _getSelectedId > 0 && _getNewCellVal != null)
                 {
-                    _clientDb.UpdateClient(_getSelectedId, _getSelectedCol-1, _getNewCellVal);
+                    if (!_getNewCellVal.ToString().Equals(_getOldCellVal.ToString(), StringComparison.OrdinalIgnoreCase))
+                    {
+                        _clientDb.UpdateClient(_getSelectedId, _getSelectedCol - 1, _getNewCellVal);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No Changes!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No Changes!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No Cell is being edit!",
+                        "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            else
-            {
-                MessageBox.Show("No Cell is being edit!",
-                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            catch (Exception) { }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -155,6 +160,11 @@ namespace ClientLoanManagementSystemByHulom.Forms
         private void SearchTextbox_TextChanged(object sender, EventArgs e)
         {
             _clientDb.SearchClient(SearchTextbox.Text.Trim());
+        }
+
+        private void FilterLargest_CheckedChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

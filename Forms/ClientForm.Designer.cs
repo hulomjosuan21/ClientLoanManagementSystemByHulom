@@ -37,12 +37,13 @@
             this.DeleteButton = new System.Windows.Forms.Button();
             this.ViewLoanButton = new System.Windows.Forms.Button();
             this.SearchTextbox = new System.Windows.Forms.TextBox();
-            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.FilterLargest = new System.Windows.Forms.CheckBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.residencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.birthdateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ClientTable)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
@@ -78,7 +79,7 @@
             this.ClientTable.Location = new System.Drawing.Point(8, 35);
             this.ClientTable.Name = "ClientTable";
             this.ClientTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ClientTable.Size = new System.Drawing.Size(634, 379);
+            this.ClientTable.Size = new System.Drawing.Size(847, 379);
             this.ClientTable.TabIndex = 1;
             this.ClientTable.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.ClientTable_CellBeginEdit);
             this.ClientTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ClientTable_CellClick);
@@ -88,6 +89,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.FilterLargest);
             this.panel1.Controls.Add(this.AddButton);
             this.panel1.Controls.Add(this.UpdateButton);
             this.panel1.Controls.Add(this.DeleteButton);
@@ -98,7 +100,7 @@
             this.panel1.Location = new System.Drawing.Point(8, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(4);
-            this.panel1.Size = new System.Drawing.Size(634, 35);
+            this.panel1.Size = new System.Drawing.Size(847, 35);
             this.panel1.TabIndex = 2;
             // 
             // AddButton
@@ -109,7 +111,7 @@
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AddButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddButton.ForeColor = System.Drawing.Color.White;
-            this.AddButton.Location = new System.Drawing.Point(276, 4);
+            this.AddButton.Location = new System.Drawing.Point(489, 4);
             this.AddButton.Name = "AddButton";
             this.AddButton.Size = new System.Drawing.Size(84, 27);
             this.AddButton.TabIndex = 5;
@@ -125,7 +127,7 @@
             this.UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.UpdateButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateButton.ForeColor = System.Drawing.Color.White;
-            this.UpdateButton.Location = new System.Drawing.Point(360, 4);
+            this.UpdateButton.Location = new System.Drawing.Point(573, 4);
             this.UpdateButton.Name = "UpdateButton";
             this.UpdateButton.Size = new System.Drawing.Size(84, 27);
             this.UpdateButton.TabIndex = 4;
@@ -141,7 +143,7 @@
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DeleteButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteButton.ForeColor = System.Drawing.Color.White;
-            this.DeleteButton.Location = new System.Drawing.Point(444, 4);
+            this.DeleteButton.Location = new System.Drawing.Point(657, 4);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(84, 27);
             this.DeleteButton.TabIndex = 3;
@@ -157,7 +159,7 @@
             this.ViewLoanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ViewLoanButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ViewLoanButton.ForeColor = System.Drawing.Color.White;
-            this.ViewLoanButton.Location = new System.Drawing.Point(528, 4);
+            this.ViewLoanButton.Location = new System.Drawing.Point(741, 4);
             this.ViewLoanButton.Name = "ViewLoanButton";
             this.ViewLoanButton.Size = new System.Drawing.Size(102, 27);
             this.ViewLoanButton.TabIndex = 2;
@@ -175,9 +177,19 @@
             this.SearchTextbox.TabIndex = 1;
             this.SearchTextbox.TextChanged += new System.EventHandler(this.SearchTextbox_TextChanged);
             // 
-            // clientBindingSource
+            // FilterLargest
             // 
-            this.clientBindingSource.DataSource = typeof(ClientLoanManagementSystemByHulom.Entities.Client);
+            this.FilterLargest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.FilterLargest.AutoSize = true;
+            this.FilterLargest.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FilterLargest.Location = new System.Drawing.Point(250, 11);
+            this.FilterLargest.Name = "FilterLargest";
+            this.FilterLargest.Size = new System.Drawing.Size(86, 17);
+            this.FilterLargest.TabIndex = 6;
+            this.FilterLargest.Text = "Largest Loan";
+            this.FilterLargest.UseVisualStyleBackColor = true;
+            this.FilterLargest.CheckedChanged += new System.EventHandler(this.FilterLargest_CheckedChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -209,12 +221,16 @@
             this.birthdateDataGridViewTextBoxColumn.HeaderText = "Birthdate";
             this.birthdateDataGridViewTextBoxColumn.Name = "birthdateDataGridViewTextBoxColumn";
             // 
+            // clientBindingSource
+            // 
+            this.clientBindingSource.DataSource = typeof(ClientLoanManagementSystemByHulom.Entities.Client);
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.ClientSize = new System.Drawing.Size(650, 422);
+            this.ClientSize = new System.Drawing.Size(863, 422);
             this.Controls.Add(this.ClientTable);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -249,5 +265,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn residencyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn birthdateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckBox FilterLargest;
     }
 }

@@ -16,6 +16,7 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
         public string Lastname { get; set; }
         public string Residency { get; set; }
         public DateTime Birthdate { get; set; }
+
         public AddClientForm()
         {
             InitializeComponent();
@@ -38,7 +39,6 @@ namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 
             base.WndProc(ref message);
         }
-
 
         private void AddButton_Click_1(object sender, EventArgs e)
         {

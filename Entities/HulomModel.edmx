@@ -32,25 +32,9 @@
           <Property Name="DueDate" Type="datetime" Nullable="false" />
           <Property Name="PaidStatus" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Loan__ClientID__2DE6D218">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Loan" Type="Self.Loan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Loan">
-              <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="hulomdbModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Loan" EntityType="Self.Loan" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Loan__ClientID__2DE6D218" Association="Self.FK__Loan__ClientID__2DE6D218">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Loan" EntitySet="Loan" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -59,10 +43,6 @@
         <EntityContainer Name="hulomdbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="hulomdbModel.Client" />
           <EntitySet Name="Loans" EntityType="hulomdbModel.Loan" />
-          <AssociationSet Name="FK__Loan__ClientID__2DE6D218" Association="hulomdbModel.FK__Loan__ClientID__2DE6D218">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Loan" EntitySet="Loans" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Client">
           <Key>
@@ -73,7 +53,6 @@
           <Property Name="Lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Residency" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Birthdate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Loans" Relationship="hulomdbModel.FK__Loan__ClientID__2DE6D218" FromRole="Client" ToRole="Loan" />
         </EntityType>
         <EntityType Name="Loan">
           <Key>
@@ -91,20 +70,7 @@
           <Property Name="TotalPayable" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PaidStatus" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Client" Relationship="hulomdbModel.FK__Loan__ClientID__2DE6D218" FromRole="Loan" ToRole="Client" />
         </EntityType>
-        <Association Name="FK__Loan__ClientID__2DE6D218">
-          <End Type="hulomdbModel.Client" Role="Client" Multiplicity="1" />
-          <End Type="hulomdbModel.Loan" Role="Loan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Loan">
-              <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -45,10 +45,11 @@
             // CancelButton
             // 
             this.CancelButton.AutoSize = true;
-            this.CancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.CancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(165)))), ((int)(((byte)(22)))));
             this.CancelButton.FlatAppearance.BorderSize = 0;
             this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelButton.ForeColor = System.Drawing.Color.White;
             this.CancelButton.Location = new System.Drawing.Point(136, 62);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(125, 31);
@@ -60,10 +61,11 @@
             // SetButton
             // 
             this.SetButton.AutoSize = true;
-            this.SetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.SetButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(146)))), ((int)(((byte)(227)))));
             this.SetButton.FlatAppearance.BorderSize = 0;
             this.SetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SetButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SetButton.ForeColor = System.Drawing.Color.White;
             this.SetButton.Location = new System.Drawing.Point(11, 62);
             this.SetButton.Name = "SetButton";
             this.SetButton.Size = new System.Drawing.Size(128, 31);
