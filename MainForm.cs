@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClientLoanManagementSystemByHulom
 {
+    [Author]
     public partial class MainForm : Form
     {
 
@@ -22,7 +16,10 @@ namespace ClientLoanManagementSystemByHulom
         {
             WindowState = FormWindowState.Maximized;
             LoadForm(new Forms.DashboardForm());
-            
+
+            AuthorAttribute classAttribute = (AuthorAttribute)Attribute.GetCustomAttribute(typeof(MainForm), typeof(AuthorAttribute));
+
+            FooterLabel.Text += classAttribute.Name;
         }
 
         private void DashboardButton_Click(object sender, EventArgs e)
@@ -34,5 +31,11 @@ namespace ClientLoanManagementSystemByHulom
         {
             LoadForm(new Forms.ClientForm());
         }
+    }
+
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Interface | AttributeTargets.Enum, Inherited = false, AllowMultiple = false)]
+    sealed class AuthorAttribute : Attribute
+    {
+        public string Name = "Josuan Leonardo Hulom BSIT 2A";
     }
 }

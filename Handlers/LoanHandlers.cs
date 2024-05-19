@@ -2,20 +2,22 @@
 using ClientLoanManagementSystemByHulom.Utilities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClientLoanManagementSystemByHulom.Handlers
 {
+    [Author]
+    [Serializable]
     internal class LoanHandlers : LoanCalculations, IDisposable
     {
+        [Required(ErrorMessage = "No Database Connection")]
         private readonly hulomdbEntities _context;
         private readonly BindingSource _bindingSource;
 
+        [Required]
         private readonly int _clientId;
         public decimal LoanAmount { get; set; }
         public decimal Interest { get; set; }
@@ -23,14 +25,48 @@ namespace ClientLoanManagementSystemByHulom.Handlers
         public int NoOfPayment { get; set; }
         public decimal Deduction { get; set; }
 
-        public LoanHandlers(int _clientId, BindingSource _bindingSource)
+        private readonly int _op;
+
+
+        public LoanHandlers(int _clientId, BindingSource _bindingSource, int _op = 0)
         {
             _context = new hulomdbEntities();
             this._clientId = _clientId;
             this._bindingSource = _bindingSource;
 
-            _bindingSource.DataSource = new hulomdbEntities().Loans.Where(l => l.ClientID == _clientId).ToList();
+            this._op = _op;
+
+            RefreshBindingSource = _op;
         }
+
+        public int RefreshBindingSource
+        {
+            set
+            {
+                switch (value)
+                {
+                    case 1:
+                        _bindingSource.DataSource = _context.Loans.Where(_ => _.ClientID == _clientId).OrderByDescending(_ => _.LoanAmount).ToList();
+                        break;
+                    case 2:
+                        _bindingSource.DataSource = _context.Loans.Where(_ => _.ClientID == _clientId && _.PaidStatus.Equals(LoanStatus.Ongoing.ToString())).OrderBy(_ => _.DueDate).ToList();
+                        break;
+                    case 3:
+                        _bindingSource.DataSource = _context.Loans.Where(_ => _.ClientID == _clientId && _.PaidStatus.Equals(LoanStatus.Ongoing.ToString())).ToList();
+                        break;
+                    case 4:
+                        _bindingSource.DataSource = _context.Loans.Where(_ => _.ClientID == _clientId && _.PaidStatus.Equals(LoanStatus.Paid.ToString())).ToList();
+                        break;
+                    case 5:
+                        _bindingSource.DataSource = _context.Loans.Where(_ => _.ClientID == _clientId && _.PaidStatus.Equals(LoanStatus.Penalized.ToString())).ToList();
+                        break;
+                    default:
+                        _bindingSource.DataSource = _context.Loans.Where(_ => _.ClientID == _clientId).ToList();
+                        break;
+                }
+            }
+        }
+
         public void AddLoanData()
         {
             try
@@ -54,7 +90,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                 _context.Loans.Add(addLoan);
                 _context.SaveChanges();
 
-                _bindingSource.DataSource = _context.Loans.Where(q => q.ClientID == _clientId).ToList();
+                RefreshBindingSource = _op;
             }
             catch (Exception ex)
             {
@@ -66,7 +102,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
         {
             using (hulomdbEntities context = new hulomdbEntities())
             {
-                List<Loan> loansToDelete = context.Loans.Where(loan => loan.ClientID == _id).ToList();
+                List<Loan> loansToDelete = context.Loans.Where(_ => _.ClientID == _id).ToList();
 
                 foreach (Loan loan in loansToDelete)
                 {
@@ -83,7 +119,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
 
         public void SetStatus(int loanId, string stat)
         {
-            Loan l = _context.Loans.FirstOrDefault(q => q.LoanID == loanId);
+            Loan l = _context.Loans.FirstOrDefault(_ => _.LoanID == loanId);
 
             if (l != null)
             {
@@ -97,22 +133,21 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                     MessageBox.Show("Cannot set to Ongoing status because the loan has already reached the due date", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
-                _bindingSource.DataSource = _context.Loans.Where(q => q.ClientID == _clientId).ToList();
+                RefreshBindingSource = _op;
             }
         }
 
         private bool CheckIfLoanDue(int _id)
         {
-            Loan loanDue = _context.Loans.FirstOrDefault(l => l.LoanID == _id);
+            Loan loanDue = _context.Loans.FirstOrDefault(_ => _.LoanID == _id);
 
             if (loanDue != null)
             {
                 return DateTime.Now > loanDue.DueDate;
             }
 
-            return false; // Return false if loan with given ID is not found
+            return false;
         }
-
 
         public (bool confirm, int ID) AutoSetPenalized
         {
@@ -120,7 +155,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             {
                 if (value.confirm == true)
                 {
-                    List<Loan> setPenal = _context.Loans.Where(l => l.DueDate <= DateTime.Now && l.PaidStatus == LoanStatus.Ongoing.ToString() && l.ClientID == value.ID).ToList();
+                    List<Loan> setPenal = _context.Loans.Where(_ => _.DueDate <= DateTime.Now && _.PaidStatus == LoanStatus.Ongoing.ToString() && _.ClientID == value.ID).ToList();
 
                     foreach (Loan loan in setPenal)
                     {
@@ -128,7 +163,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
 
                         _context.SaveChanges();
 
-                        _bindingSource.DataSource = _context.Loans.Where(q => q.ClientID == _clientId).ToList();
+                        RefreshBindingSource = _op;
                     }
                 }
             }
@@ -177,6 +212,15 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             return (Start: nextDueDate, Due: nextDueDate);
         }
 
+        public (string Firstname, string Lastname) GetName
+        {
+            get
+            {
+                Client getClient = _context.Clients.Where(_ => _.ID == _clientId).FirstOrDefault();
+                return (getClient.Firstname, getClient.Lastname);
+            }
+        }
+        
         public decimal InterestedAmount(decimal loanAmount, decimal interest) => (loanAmount * interest) / 100;
 
         public decimal ReceivableAmount(decimal loanAmount, decimal interestedAmount) => (loanAmount + interestedAmount);

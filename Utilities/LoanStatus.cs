@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClientLoanManagementSystemByHulom.Utilities
+﻿namespace ClientLoanManagementSystemByHulom.Utilities
 {
+    [Author]
     public enum LoanStatus
     {
         Ongoing,

@@ -3,20 +3,19 @@ using ClientLoanManagementSystemByHulom.Forms.PopUpForms;
 using ClientLoanManagementSystemByHulom.Handlers;
 using ClientLoanManagementSystemByHulom.Utilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClientLoanManagementSystemByHulom.Forms
 {
+    [Author]
     public partial class LoanForm : Form
     {
         private const string CURRENCY = "en-PH";
+
+        private readonly string[] ListOfOption = { "All Loans (Default)", "All Loans (Largest First)", "Due Date (Nearest First)", LoanStatus.Ongoing.ToString(), LoanStatus.Paid.ToString(), LoanStatus.Penalized.ToString() };
 
         private readonly int _currentClientId;
         private LoanHandlers _loanDb;
@@ -26,20 +25,27 @@ namespace ClientLoanManagementSystemByHulom.Forms
             InitializeComponent();
             InitializeAddedComponent();
             this._currentClientId = _currentClientId;
-
         }
-     
+
         private void LoanForm_Load(object sender, EventArgs e)
         {
-            Text = $"Cliend ID #{_currentClientId}";
             _loanDb = new LoanHandlers(_currentClientId, loanBindingSource)
             {
                 AutoSetPenalized = (true, _currentClientId)
             };
 
+            Text = $"Cliend ID #{_currentClientId} {_loanDb.GetName.Firstname} {_loanDb.GetName.Lastname}";
+
+            FilterOption.DataSource = ListOfOption;
+
             totalLoanLabel.Text = ClientInfo._TotalLoan.ToString();
-            totalPayableLabel.Text = ClientInfo._TotalPayable.ToString();
-            totalReceivableLabel.Text = ClientInfo._TotalReceivable.ToString();
+
+
+            totalPayableLabel.Text = DashboardForm.ToShordHand(ClientInfo._TotalPayable);
+            FullValueFormatToolTip.SetToolTip(totalPayableLabel, ClientInfo._TotalPayable.ToString());
+            totalReceivableLabel.Text = DashboardForm.ToShordHand(ClientInfo._TotalReceivable);
+            FullValueFormatToolTip.SetToolTip(totalReceivableLabel, ClientInfo._TotalReceivable.ToString());
+
             ongoingLoansLabel.Text = ClientInfo._TotalOngoing.ToString();
         }
 
@@ -99,14 +105,14 @@ namespace ClientLoanManagementSystemByHulom.Forms
         private void LoanTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
 
-            if (e.ColumnIndex == 11 && e.RowIndex >= 0) 
+            if (e.ColumnIndex == 11 && e.RowIndex >= 0)
             {
-                
+
                 string cellValue = LoanTable.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 
                 Color ongoingColor = Color.FromArgb(56, 146, 227);
-                Color paidColor = Color.FromArgb(121, 207, 24); 
-                Color penalizedColor = Color.FromArgb(210, 0, 12); 
+                Color paidColor = Color.FromArgb(121, 207, 24);
+                Color penalizedColor = Color.FromArgb(210, 0, 12);
 
                 switch (cellValue)
                 {
@@ -137,5 +143,17 @@ namespace ClientLoanManagementSystemByHulom.Forms
             _loanId = (int)LoanTable.SelectedRows[0].Cells[0].Value;
         }
 
+        private void LoanForm_ResizeEnd(object sender, EventArgs e)
+        {
+            //MessageBox.Show(Size.ToString());
+        }
+
+        private void FilterOption_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _loanDb = new LoanHandlers(_currentClientId, loanBindingSource, FilterOption.SelectedIndex)
+            {
+                AutoSetPenalized = (true, _currentClientId)
+            };
+        }
     }
 }

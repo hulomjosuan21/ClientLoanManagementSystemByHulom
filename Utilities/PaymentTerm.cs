@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClientLoanManagementSystemByHulom.Utilities
 {
+    [Author]
     public enum PaymentTerm
     {
         Daily,

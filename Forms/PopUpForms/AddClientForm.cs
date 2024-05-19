@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 
 namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 {
+    [Author]
     public partial class AddClientForm : Form
     {
+        [Required]
         public string Firstname { get; set; }
+        [Required]
         public string Lastname { get; set; }
+        [Required]
         public string Residency { get; set; }
+        [Required]
         public DateTime Birthdate { get; set; }
 
         public AddClientForm()

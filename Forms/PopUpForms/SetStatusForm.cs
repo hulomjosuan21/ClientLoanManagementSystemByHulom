@@ -1,16 +1,10 @@
 ﻿using ClientLoanManagementSystemByHulom.Utilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 {
+    [Author]
     public partial class SetStatusForm : Form
     {
         public string SelectedStatus = LoanStatus.Ongoing.ToString();

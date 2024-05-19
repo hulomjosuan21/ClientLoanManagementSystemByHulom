@@ -2,18 +2,14 @@
 using ClientLoanManagementSystemByHulom.Handlers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ClientLoanManagementSystemByHulom.Forms
 {
+    [Author]
     public partial class ClientForm : Form
     {
+        private readonly string[] ListOfOption = {"All Clients (Default)","Firstname (A-Z)", "(Largest Loan First)"};
 
         private ClientHandler _clientDb;
 
@@ -25,6 +21,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
         private void ClientForm_Load(object sender, EventArgs e)
         {
             _clientDb = new ClientHandler(clientBindingSource);
+            FilterOption.DataSource = ListOfOption;
         }
 
         private void ViewLoanButton_Click(object sender, EventArgs e)
@@ -162,9 +159,9 @@ namespace ClientLoanManagementSystemByHulom.Forms
             _clientDb.SearchClient(SearchTextbox.Text.Trim());
         }
 
-        private void FilterLargest_CheckedChanged(object sender, EventArgs e)
+        private void FilterOption_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            _clientDb = new ClientHandler(clientBindingSource, FilterOption.SelectedIndex);
         }
     }
 }

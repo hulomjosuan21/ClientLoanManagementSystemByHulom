@@ -1,24 +1,24 @@
 ﻿using ClientLoanManagementSystemByHulom.Utilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using System.Windows.Forms;
 
 namespace ClientLoanManagementSystemByHulom.Forms.PopUpForms
 {
+    [Author]
     public partial class AddLoanForm : Form, LoanCalculations
     {
         private const decimal MIN_LOAN = 1000;
 
+        [Required]
         public decimal LoanAmount { get; set; }
+        [Required]
         public decimal Interest { get; set; }
+        [Required]
         public PaymentTerm SelectedTerm { get; set; }
+        [Required]
         public int NoOfPayment { get; set; }
+        [Required]
         public decimal Deduction { get; set; }
 
         public AddLoanForm()

@@ -1,64 +1,27 @@
 ﻿using ClientLoanManagementSystemByHulom.Entities;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace ClientLoanManagementSystemByHulom.Handlers
 {
+    [Author]
+    [Serializable]
     internal class ClientHandler : IDisposable
     {
+        [Required]
         private readonly hulomdbEntities _context;
         private readonly BindingSource _bindingSource;
-        private readonly bool _filter;
-        public ClientHandler(BindingSource _bindingSource, bool _filter = true)
+        private readonly int _op;
+
+        public ClientHandler(BindingSource _bindingSource, int _op = 0)
         {
             _context = new hulomdbEntities();
             this._bindingSource = _bindingSource;
-            this._filter = _filter;
-            RefreshBindingSource();
-        }
-
-        private void RefreshBindingSource()
-        {
-            if (_filter)
-            {
-                int[] ids = GetClientIdsSortedByLoanAmount;
-
-                List<Client> clients = _context.Clients
-                    .Where(client => ids.Contains(client.ID))
-                    .ToList()
-                    .OrderBy(client => Array.IndexOf(ids, client.ID))
-                    .ToList();
-
-                _bindingSource.DataSource = clients;
-            }
-            else
-            {
-                _bindingSource.DataSource = _context.Clients.ToList();
-            }
-        }
-
-        private int[] GetClientIdsSortedByLoanAmount
-        {
-            get
-            { 
-                using (hulomdbEntities _con = new hulomdbEntities())
-                {
-                    var clientLoanTotals = _con.Loans
-                        .GroupBy(l => l.ClientID)
-                        .Select(g => new
-                        {
-                            ClientID = g.Key,
-                            TotalLoanAmount = g.Sum(l => l.LoanAmount)
-                        })
-                        .OrderByDescending(x => x.TotalLoanAmount)
-                        .ToList();
-
-                    return clientLoanTotals.Select(x => x.ClientID).ToArray();
-                }
-            }
+            this._op = _op;
+            RefreshBindingSource = _op;
         }
 
         public static hulomdbEntities Con
@@ -79,12 +42,12 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             _ = _context.Clients.Add(addClient);
             _context.SaveChanges();
 
-            RefreshBindingSource();
+            RefreshBindingSource = _op;
         }
 
         public void UpdateClient(int _id, int colIndex, object newVal)
         {
-            Client selectedClient = _context.Clients.FirstOrDefault(q => q.ID == _id);
+            Client selectedClient = _context.Clients.FirstOrDefault(_ => _.ID == _id);
 
             switch (colIndex)
             {
@@ -105,17 +68,17 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             }
 
             _context.SaveChanges();
-            RefreshBindingSource();
+            RefreshBindingSource = _op;
         }
 
         public void DeleteClient(int _id)
         {
-            Client itemToDelete = _context.Clients.Where(q => q.ID == _id).FirstOrDefault();
+            Client itemToDelete = _context.Clients.FirstOrDefault(_ => _.ID == _id);
 
             _ = _context.Clients.Remove(itemToDelete);
 
             _context.SaveChanges();
-            RefreshBindingSource();
+            RefreshBindingSource = _op;
         }
 
         public void SearchClient(string text)
@@ -131,19 +94,67 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                                 c.Lastname.Contains(text) ||
                                 c.Residency.Contains(text) ||
                                 (isBirthDate && c.Birthdate == birthDate))
-                    .Select(c => new
+                    .Select(_ => new
                     {
-                        c.ID,
-                        c.Firstname,
-                        c.Lastname,
-                        c.Residency,
-                        c.Birthdate
+                        _.ID,
+                        _.Firstname,
+                        _.Lastname,
+                        _.Residency,
+                        _.Birthdate
                     })
                     .ToList();
 
                 _bindingSource.DataSource = result;
             }
             catch (Exception) { }
+        }
+
+        private int RefreshBindingSource
+        {
+            set
+            {
+                switch (value)
+                {
+                    case 1:
+                        _bindingSource.DataSource = _context.Clients.OrderBy(_ => _.Firstname).ToList();
+                        break;
+                    case 2:
+                        int[] ids = GetClientIdsSortedByLoanAmount;
+
+                        List<Client> clients = _context.Clients
+                            .Where(client => ids.Contains(client.ID))
+                            .ToList()
+                            .OrderBy(client => Array.IndexOf(ids, client.ID))
+                            .ToList();
+
+                        _bindingSource.DataSource = clients;
+                        break;
+                    default:
+                        _bindingSource.DataSource = _context.Clients.ToList();
+                        break;
+                }
+            }
+        }
+
+        private int[] GetClientIdsSortedByLoanAmount
+        {
+            get
+            {
+                using (hulomdbEntities _con = new hulomdbEntities())
+                {
+                    var clientLoanTotals = _con.Loans
+                        .GroupBy(_ => _.ClientID)
+                        .Select(g => new
+                        {
+                            ClientID = g.Key,
+                            TotalLoanAmount = g.Sum(_ => _.LoanAmount)
+                        })
+                        .OrderByDescending(_ => _.TotalLoanAmount)
+                        .ToList();
+
+                    return clientLoanTotals.Select(_ => _.ClientID).ToArray();
+                }
+            }
         }
 
         public void Dispose()
