@@ -416,6 +416,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
             this.SearchTextbox.Name = "SearchTextbox";
             this.SearchTextbox.Size = new System.Drawing.Size(184, 27);
             this.SearchTextbox.TabIndex = 8;
+            this.SearchTextbox.TextChanged += new System.EventHandler(this.SearchTextbox_TextChanged);
             // 
             // label5
             // 

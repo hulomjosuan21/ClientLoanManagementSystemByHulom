@@ -31,8 +31,8 @@ namespace ClientLoanManagementSystemByHulom.Forms
             {
                 using (hulomdbEntities con = new hulomdbEntities())
                 {
-                    int getTotalClient = con.Clients.Count();
-                    int getTotalLoan = con.Loans.Count();
+                    int getTotalClient = con.Clients?.Count() ?? 0;
+                    int getTotalLoan = con.Loans?.Count() ?? 0;
 
                     return (_TotalClients: getTotalClient, _TotalLoans: getTotalLoan);
                 }
@@ -45,8 +45,8 @@ namespace ClientLoanManagementSystemByHulom.Forms
             {
                 using (hulomdbEntities con = new hulomdbEntities())
                 {
-                    decimal totalLoanAmt = con.Loans.Sum(_ => _.LoanAmount);
-                    decimal totalPayableByClients = con.Loans.Sum(_ => _.TotalPayable);
+                    decimal totalLoanAmt = con.Loans?.Sum(_ => (decimal?)_.LoanAmount) ?? 0;
+                    decimal totalPayableByClients = con.Loans?.Sum(_ => (decimal?)_.TotalPayable) ?? 0;
 
                     return (_Disbursed: totalLoanAmt, _PayableByClients: totalPayableByClients);
                 }

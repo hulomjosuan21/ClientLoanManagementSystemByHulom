@@ -38,15 +38,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
 
             FilterOption.DataSource = ListOfOption;
 
-            totalLoanLabel.Text = ClientInfo._TotalLoan.ToString();
-
-
-            totalPayableLabel.Text = DashboardForm.ToShordHand(ClientInfo._TotalPayable);
-            FullValueFormatToolTip.SetToolTip(totalPayableLabel, ClientInfo._TotalPayable.ToString());
-            totalReceivableLabel.Text = DashboardForm.ToShordHand(ClientInfo._TotalReceivable);
-            FullValueFormatToolTip.SetToolTip(totalReceivableLabel, ClientInfo._TotalReceivable.ToString());
-
-            ongoingLoansLabel.Text = ClientInfo._TotalOngoing.ToString();
+            RefreshValues();
         }
 
         private (int _TotalLoan, decimal _TotalPayable, decimal _TotalReceivable, int _TotalOngoing) ClientInfo
@@ -55,7 +47,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
             {
                 using (hulomdbEntities con = new hulomdbEntities())
                 {
-                    int totalLoan = con.Loans.Count(l => l.ClientID == _currentClientId);
+                    int totalLoan = con.Loans?.Count(l => l.ClientID == _currentClientId) ?? 0;
 
                     decimal? totalPayableNullable = con.Loans.Where(s => s.ClientID == _currentClientId && s.PaidStatus != LoanStatus.Paid.ToString()).Sum(s => (decimal?)s.TotalPayable);
                     decimal totalPayable = totalPayableNullable ?? 0;
@@ -63,7 +55,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
                     decimal? totalRecNullable = con.Loans.Where(s => s.ClientID == _currentClientId).Sum(s => (decimal?)s.ReceivableAmount);
                     decimal totalRec = totalRecNullable ?? 0;
 
-                    int countOngoing = con.Loans.Where(l => l.ClientID == _currentClientId && l.PaidStatus == LoanStatus.Ongoing.ToString()).Count();
+                    int countOngoing = con.Loans?.Where(l => l.ClientID == _currentClientId && l.PaidStatus == LoanStatus.Ongoing.ToString()).Count() ?? 0;
 
                     return (_TotalLoan: totalLoan, _TotalPayable: totalPayable, _TotalReceivable: totalRec, _TotalOngoing: countOngoing);
                 }
@@ -76,10 +68,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
             getStatus.Text = $"Select Loan Status for Loan ID #{_loanId}";
             if (getStatus.ShowDialog() == DialogResult.OK)
             {
-                _loanDb.SetStatus(_loanId, getStatus.SelectedStatus.ToString());
-                totalPayableLabel.Text = ClientInfo._TotalPayable.ToString();
-                totalReceivableLabel.Text = ClientInfo._TotalReceivable.ToString();
-                ongoingLoansLabel.Text = ClientInfo._TotalOngoing.ToString();
+                RefreshValues();
             }
         }
 
@@ -95,11 +84,18 @@ namespace ClientLoanManagementSystemByHulom.Forms
                 _loanDb.Deduction = newLoan.Deduction;
                 _loanDb.AddLoanData();
 
-                totalLoanLabel.Text = ClientInfo._TotalLoan.ToString();
-                totalPayableLabel.Text = ClientInfo._TotalPayable.ToString();
-                totalReceivableLabel.Text = ClientInfo._TotalReceivable.ToString();
-                ongoingLoansLabel.Text = ClientInfo._TotalOngoing.ToString();
+                RefreshValues();
             }
+        }
+
+        private void RefreshValues()
+        {
+            totalLoanLabel.Text = ClientInfo._TotalLoan.ToString();
+            totalPayableLabel.Text = DashboardForm.ToShordHand(ClientInfo._TotalPayable);
+            FullValueFormatToolTip.SetToolTip(totalPayableLabel, ClientInfo._TotalPayable.ToString());
+            totalReceivableLabel.Text = DashboardForm.ToShordHand(ClientInfo._TotalReceivable);
+            FullValueFormatToolTip.SetToolTip(totalReceivableLabel, ClientInfo._TotalReceivable.ToString());
+            ongoingLoansLabel.Text = ClientInfo._TotalOngoing.ToString();
         }
 
         private void LoanTable_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -154,6 +150,11 @@ namespace ClientLoanManagementSystemByHulom.Forms
             {
                 AutoSetPenalized = (true, _currentClientId)
             };
+        }
+
+        private void SearchTextbox_TextChanged(object sender, EventArgs e)
+        {
+            _loanDb.SearchLoan(SearchTextbox.Text.Trim());
         }
     }
 }

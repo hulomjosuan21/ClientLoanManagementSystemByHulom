@@ -39,6 +39,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             RefreshBindingSource = _op;
         }
 
+
         public int RefreshBindingSource
         {
             set
@@ -220,7 +221,43 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                 return (getClient.Firstname, getClient.Lastname);
             }
         }
-        
+
+        public void SearchLoan(string text)
+        {
+            try
+            {
+                bool isLoanId = int.TryParse(text, out int loanId);
+                bool isDueDate = DateTime.TryParse(text, out DateTime dueDate);
+
+                var result = _context.Loans
+                    .Where(l => l.ClientID == _clientId &&
+                                ((isLoanId && l.LoanID == loanId) ||
+                                 l.PaymentTerm.Contains(text) ||
+                                 l.PaidStatus.Contains(text) ||
+                                 (isDueDate && l.DueDate == dueDate)))
+                    .Select(l => new
+                    {
+                        l.LoanID,
+                        l.ClientID,
+                        l.LoanAmount,
+                        l.Interest,
+                        l.NoOfPayments,
+                        l.PaymentTerm,
+                        l.Deduction,
+                        l.InterestedAmount,
+                        l.ReceivableAmount,
+                        l.TotalPayable,
+                        l.DueDate,
+                        l.PaidStatus
+                    })
+                    .ToList();
+
+                _bindingSource.DataSource = result;
+            }
+            catch (Exception)
+            { }
+        }
+
         public decimal InterestedAmount(decimal loanAmount, decimal interest) => (loanAmount * interest) / 100;
 
         public decimal ReceivableAmount(decimal loanAmount, decimal interestedAmount) => (loanAmount + interestedAmount);

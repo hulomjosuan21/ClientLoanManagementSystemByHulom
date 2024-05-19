@@ -119,7 +119,7 @@ namespace ClientLoanManagementSystemByHulom.Handlers
                         _bindingSource.DataSource = _context.Clients.OrderBy(_ => _.Firstname).ToList();
                         break;
                     case 2:
-                        int[] ids = GetClientIdsSortedByLoanAmount;
+                        int[] ids = GetClientIdsSortedByLoanAmount();
 
                         List<Client> clients = _context.Clients
                             .Where(client => ids.Contains(client.ID))
@@ -136,24 +136,23 @@ namespace ClientLoanManagementSystemByHulom.Handlers
             }
         }
 
-        private int[] GetClientIdsSortedByLoanAmount
+        private int[] GetClientIdsSortedByLoanAmount()
         {
-            get
+            using (hulomdbEntities _con = new hulomdbEntities())
             {
-                using (hulomdbEntities _con = new hulomdbEntities())
-                {
-                    var clientLoanTotals = _con.Loans
-                        .GroupBy(_ => _.ClientID)
-                        .Select(g => new
+                IQueryable<int> clientIds = _con.Clients
+                    .GroupJoin(_con.Loans,
+                        client => client.ID,
+                        loan => loan.ClientID,
+                        (client, loans) => new
                         {
-                            ClientID = g.Key,
-                            TotalLoanAmount = g.Sum(_ => _.LoanAmount)
+                            ClientID = client.ID,
+                            TotalLoanAmount = loans.Sum(l => (int?)l.LoanAmount)
                         })
-                        .OrderByDescending(_ => _.TotalLoanAmount)
-                        .ToList();
+                    .OrderByDescending(_ => _.TotalLoanAmount)
+                    .Select(_ => _.ClientID);
 
-                    return clientLoanTotals.Select(_ => _.ClientID).ToArray();
-                }
+                return clientIds.ToArray();
             }
         }
 
