@@ -29,10 +29,10 @@ namespace ClientLoanManagementSystemByHulom.Forms
         {
             get
             {
-                using (hulomdbEntities con = new hulomdbEntities())
+                using (hulomdbEntities _con = new hulomdbEntities())
                 {
-                    int getTotalClient = con.Clients?.Count() ?? 0;
-                    int getTotalLoan = con.Loans?.Count() ?? 0;
+                    int getTotalClient = _con.Clients?.Count() ?? 0;
+                    int getTotalLoan = _con.Loans.Count();
 
                     return (_TotalClients: getTotalClient, _TotalLoans: getTotalLoan);
                 }

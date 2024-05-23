@@ -36,7 +36,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
                 MessageBox.Show("No Selected Client!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
+     
         private int _getSelectedId;
         private readonly HashSet<int> _getSelectedIds = new HashSet<int>();
         private void ClientTable_SelectionChanged(object sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
             if (_getSelectedIds.Count != 0)
             {
                 HashSet<int> selectedIdsCopy = new HashSet<int>(_getSelectedIds);
-
+                
                 foreach (int id in selectedIdsCopy)
                 {
                     DialogResult result = MessageBox.Show($"Do you want to delete the client ID {id}", "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
