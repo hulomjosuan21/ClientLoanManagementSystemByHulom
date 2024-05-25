@@ -65,7 +65,7 @@ namespace ClientLoanManagementSystemByHulom
             // 
             // FooterSection
             // 
-            this.FooterSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(65)))), ((int)(((byte)(0)))));
+            this.FooterSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(78)))), ((int)(((byte)(110)))));
             this.FooterSection.Controls.Add(this.FooterLabel);
             this.FooterSection.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.FooterSection.Location = new System.Drawing.Point(0, 502);
@@ -86,7 +86,7 @@ namespace ClientLoanManagementSystemByHulom
             // 
             // SideBarSection
             // 
-            this.SideBarSection.BackColor = System.Drawing.Color.White;
+            this.SideBarSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(242)))));
             this.SideBarSection.Controls.Add(this.ClientsButton);
             this.SideBarSection.Controls.Add(this.DashboardButton);
             this.SideBarSection.Controls.Add(this.panel1);
@@ -101,11 +101,11 @@ namespace ClientLoanManagementSystemByHulom
             this.ClientsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ClientsButton.AutoSize = true;
-            this.ClientsButton.BackColor = System.Drawing.Color.White;
+            this.ClientsButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(242)))));
             this.ClientsButton.FlatAppearance.BorderSize = 0;
             this.ClientsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClientsButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClientsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(78)))), ((int)(((byte)(128)))));
+            this.ClientsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(44)))), ((int)(((byte)(64)))));
             this.ClientsButton.Location = new System.Drawing.Point(0, 145);
             this.ClientsButton.Margin = new System.Windows.Forms.Padding(8, 0, 8, 8);
             this.ClientsButton.Name = "ClientsButton";
@@ -120,11 +120,11 @@ namespace ClientLoanManagementSystemByHulom
             this.DashboardButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DashboardButton.AutoSize = true;
-            this.DashboardButton.BackColor = System.Drawing.Color.White;
+            this.DashboardButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(226)))), ((int)(((byte)(242)))));
             this.DashboardButton.FlatAppearance.BorderSize = 0;
             this.DashboardButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DashboardButton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DashboardButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(78)))), ((int)(((byte)(128)))));
+            this.DashboardButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(44)))), ((int)(((byte)(64)))));
             this.DashboardButton.Location = new System.Drawing.Point(0, 108);
             this.DashboardButton.Margin = new System.Windows.Forms.Padding(8);
             this.DashboardButton.Name = "DashboardButton";
@@ -136,7 +136,7 @@ namespace ClientLoanManagementSystemByHulom
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(78)))), ((int)(((byte)(128)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(116)))), ((int)(((byte)(174)))));
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -158,7 +158,7 @@ namespace ClientLoanManagementSystemByHulom
             // 
             // ParentPanel
             // 
-            this.ParentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.ParentPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.ParentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ParentPanel.Location = new System.Drawing.Point(150, 36);
             this.ParentPanel.Name = "ParentPanel";
@@ -167,7 +167,7 @@ namespace ClientLoanManagementSystemByHulom
             // 
             // HeaderSection
             // 
-            this.HeaderSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(33)))), ((int)(((byte)(94)))));
+            this.HeaderSection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(89)))), ((int)(((byte)(137)))));
             this.HeaderSection.Controls.Add(this.label1);
             this.HeaderSection.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeaderSection.Location = new System.Drawing.Point(0, 0);

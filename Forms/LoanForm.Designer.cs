@@ -58,19 +58,6 @@ namespace ClientLoanManagementSystemByHulom.Forms
             this.AddButton = new System.Windows.Forms.Button();
             this.StatusButton = new System.Windows.Forms.Button();
             this.LoanTable = new System.Windows.Forms.DataGridView();
-            this.loanIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loanCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.interestDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noOfPaymentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paymentTermDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deductionCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.interestedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receivableCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPayableCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dueDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paidStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.totalReceivableLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.totalPayableLabel = new System.Windows.Forms.Label();
@@ -85,10 +72,23 @@ namespace ClientLoanManagementSystemByHulom.Forms
             this.SearchTextbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.FullValueFormatToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.loanIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loanCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.interestDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noOfPaymentsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paymentTermDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deductionCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.interestedCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receivableCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalPayableCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dueDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paidStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoanTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loanBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loanBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -105,7 +105,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
             // 
             // AddButton
             // 
-            this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(146)))), ((int)(((byte)(227)))));
+            this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(116)))), ((int)(((byte)(174)))));
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -121,7 +121,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
             // 
             // StatusButton
             // 
-            this.StatusButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(165)))), ((int)(((byte)(22)))));
+            this.StatusButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(157)))), ((int)(((byte)(209)))));
             this.StatusButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.StatusButton.FlatAppearance.BorderSize = 0;
             this.StatusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -141,7 +141,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
             this.LoanTable.AllowUserToDeleteRows = false;
             this.LoanTable.AutoGenerateColumns = false;
             this.LoanTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.LoanTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.LoanTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.LoanTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.LoanTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.loanIDDataGridViewTextBoxColumn,
@@ -158,6 +158,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
             this.paidStatusDataGridViewTextBoxColumn});
             this.LoanTable.DataSource = this.loanBindingSource;
             this.LoanTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LoanTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.LoanTable.Location = new System.Drawing.Point(8, 35);
             this.LoanTable.Name = "LoanTable";
             this.LoanTable.ReadOnly = true;
@@ -166,6 +167,162 @@ namespace ClientLoanManagementSystemByHulom.Forms
             this.LoanTable.TabIndex = 2;
             this.LoanTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.LoanTable_CellFormatting);
             this.LoanTable.SelectionChanged += new System.EventHandler(this.LoanTable_SelectionChanged);
+            // 
+            // totalReceivableLabel
+            // 
+            this.totalReceivableLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.totalReceivableLabel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalReceivableLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(89)))), ((int)(((byte)(137)))));
+            this.totalReceivableLabel.Location = new System.Drawing.Point(441, 4);
+            this.totalReceivableLabel.Name = "totalReceivableLabel";
+            this.totalReceivableLabel.Size = new System.Drawing.Size(48, 27);
+            this.totalReceivableLabel.TabIndex = 5;
+            this.totalReceivableLabel.Text = "3";
+            this.totalReceivableLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.Location = new System.Drawing.Point(353, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 27);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Total Receivable";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // totalPayableLabel
+            // 
+            this.totalPayableLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.totalPayableLabel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalPayableLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(89)))), ((int)(((byte)(137)))));
+            this.totalPayableLabel.Location = new System.Drawing.Point(566, 4);
+            this.totalPayableLabel.Name = "totalPayableLabel";
+            this.totalPayableLabel.Size = new System.Drawing.Size(48, 27);
+            this.totalPayableLabel.TabIndex = 3;
+            this.totalPayableLabel.Text = "2";
+            this.totalPayableLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label3.Location = new System.Drawing.Point(489, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 27);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Total Payable";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // totalLoanLabel
+            // 
+            this.totalLoanLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.totalLoanLabel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalLoanLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(89)))), ((int)(((byte)(137)))));
+            this.totalLoanLabel.Location = new System.Drawing.Point(305, 4);
+            this.totalLoanLabel.Name = "totalLoanLabel";
+            this.totalLoanLabel.Size = new System.Drawing.Size(48, 27);
+            this.totalLoanLabel.TabIndex = 1;
+            this.totalLoanLabel.Text = "1";
+            this.totalLoanLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label1.Location = new System.Drawing.Point(244, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 27);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Total Loan";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // ongoingLoansLabel
+            // 
+            this.ongoingLoansLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ongoingLoansLabel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ongoingLoansLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(89)))), ((int)(((byte)(137)))));
+            this.ongoingLoansLabel.Location = new System.Drawing.Point(729, 4);
+            this.ongoingLoansLabel.Name = "ongoingLoansLabel";
+            this.ongoingLoansLabel.Size = new System.Drawing.Size(48, 27);
+            this.ongoingLoansLabel.TabIndex = 6;
+            this.ongoingLoansLabel.Text = "4";
+            this.ongoingLoansLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label4.Location = new System.Drawing.Point(614, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(115, 27);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Total Ongoing Loans";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.FilterOption);
+            this.panel1.Controls.Add(this.ongoingLoansLabel);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.totalPayableLabel);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.totalReceivableLabel);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.totalLoanLabel);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.SearchTextbox);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(8, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(4);
+            this.panel1.Size = new System.Drawing.Size(1306, 35);
+            this.panel1.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.Location = new System.Drawing.Point(1107, 4);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 27);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "View Option";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // FilterOption
+            // 
+            this.FilterOption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FilterOption.FormattingEnabled = true;
+            this.FilterOption.Location = new System.Drawing.Point(1178, 7);
+            this.FilterOption.Name = "FilterOption";
+            this.FilterOption.Size = new System.Drawing.Size(121, 21);
+            this.FilterOption.TabIndex = 9;
+            this.FilterOption.SelectedIndexChanged += new System.EventHandler(this.FilterOption_SelectedIndexChanged);
+            // 
+            // SearchTextbox
+            // 
+            this.SearchTextbox.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SearchTextbox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchTextbox.Location = new System.Drawing.Point(60, 4);
+            this.SearchTextbox.Name = "SearchTextbox";
+            this.SearchTextbox.Size = new System.Drawing.Size(184, 27);
+            this.SearchTextbox.TabIndex = 8;
+            this.SearchTextbox.TextChanged += new System.EventHandler(this.SearchTextbox_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(4, 4);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 27);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Search";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // FullValueFormatToolTip
+            // 
+            this.FullValueFormatToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
             // loanIDDataGridViewTextBoxColumn
             // 
@@ -277,167 +434,11 @@ namespace ClientLoanManagementSystemByHulom.Forms
             // 
             this.loanBindingSource.DataSource = typeof(ClientLoanManagementSystemByHulom.Entities.Loan);
             // 
-            // totalReceivableLabel
-            // 
-            this.totalReceivableLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.totalReceivableLabel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalReceivableLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(165)))), ((int)(((byte)(22)))));
-            this.totalReceivableLabel.Location = new System.Drawing.Point(441, 4);
-            this.totalReceivableLabel.Name = "totalReceivableLabel";
-            this.totalReceivableLabel.Size = new System.Drawing.Size(48, 27);
-            this.totalReceivableLabel.TabIndex = 5;
-            this.totalReceivableLabel.Text = "3";
-            this.totalReceivableLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label2.Location = new System.Drawing.Point(353, 4);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 27);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Total Receivable";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // totalPayableLabel
-            // 
-            this.totalPayableLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.totalPayableLabel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalPayableLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(165)))), ((int)(((byte)(22)))));
-            this.totalPayableLabel.Location = new System.Drawing.Point(566, 4);
-            this.totalPayableLabel.Name = "totalPayableLabel";
-            this.totalPayableLabel.Size = new System.Drawing.Size(48, 27);
-            this.totalPayableLabel.TabIndex = 3;
-            this.totalPayableLabel.Text = "2";
-            this.totalPayableLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label3.Location = new System.Drawing.Point(489, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 27);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Total Payable";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // totalLoanLabel
-            // 
-            this.totalLoanLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.totalLoanLabel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.totalLoanLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(165)))), ((int)(((byte)(22)))));
-            this.totalLoanLabel.Location = new System.Drawing.Point(305, 4);
-            this.totalLoanLabel.Name = "totalLoanLabel";
-            this.totalLoanLabel.Size = new System.Drawing.Size(48, 27);
-            this.totalLoanLabel.TabIndex = 1;
-            this.totalLoanLabel.Text = "1";
-            this.totalLoanLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label1.Location = new System.Drawing.Point(244, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 27);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Total Loan";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // ongoingLoansLabel
-            // 
-            this.ongoingLoansLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ongoingLoansLabel.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ongoingLoansLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(165)))), ((int)(((byte)(22)))));
-            this.ongoingLoansLabel.Location = new System.Drawing.Point(729, 4);
-            this.ongoingLoansLabel.Name = "ongoingLoansLabel";
-            this.ongoingLoansLabel.Size = new System.Drawing.Size(48, 27);
-            this.ongoingLoansLabel.TabIndex = 6;
-            this.ongoingLoansLabel.Text = "4";
-            this.ongoingLoansLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label4.Location = new System.Drawing.Point(614, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 27);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Total Ongoing Loans";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.FilterOption);
-            this.panel1.Controls.Add(this.ongoingLoansLabel);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.totalPayableLabel);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.totalReceivableLabel);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.totalLoanLabel);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.SearchTextbox);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(8, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(4);
-            this.panel1.Size = new System.Drawing.Size(1306, 35);
-            this.panel1.TabIndex = 7;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.Location = new System.Drawing.Point(1107, 4);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 27);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "View Option";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // FilterOption
-            // 
-            this.FilterOption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.FilterOption.FormattingEnabled = true;
-            this.FilterOption.Location = new System.Drawing.Point(1178, 7);
-            this.FilterOption.Name = "FilterOption";
-            this.FilterOption.Size = new System.Drawing.Size(121, 21);
-            this.FilterOption.TabIndex = 9;
-            this.FilterOption.SelectedIndexChanged += new System.EventHandler(this.FilterOption_SelectedIndexChanged);
-            // 
-            // SearchTextbox
-            // 
-            this.SearchTextbox.Dock = System.Windows.Forms.DockStyle.Left;
-            this.SearchTextbox.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchTextbox.Location = new System.Drawing.Point(60, 4);
-            this.SearchTextbox.Name = "SearchTextbox";
-            this.SearchTextbox.Size = new System.Drawing.Size(184, 27);
-            this.SearchTextbox.TabIndex = 8;
-            this.SearchTextbox.TextChanged += new System.EventHandler(this.SearchTextbox_TextChanged);
-            // 
-            // label5
-            // 
-            this.label5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(4, 4);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 27);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Search";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // FullValueFormatToolTip
-            // 
-            this.FullValueFormatToolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
             // LoanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(1322, 560);
             this.Controls.Add(this.LoanTable);
             this.Controls.Add(this.panel1);
@@ -453,9 +454,9 @@ namespace ClientLoanManagementSystemByHulom.Forms
             this.ResizeEnd += new System.EventHandler(this.LoanForm_ResizeEnd);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LoanTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loanBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loanBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

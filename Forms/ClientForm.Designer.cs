@@ -33,13 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ClientTable = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.FilterOption = new System.Windows.Forms.ComboBox();
             this.AddButton = new System.Windows.Forms.Button();
             this.UpdateButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.ViewLoanButton = new System.Windows.Forms.Button();
             this.SearchTextbox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.FilterOption = new System.Windows.Forms.ComboBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,7 +68,7 @@
             this.ClientTable.AllowUserToDeleteRows = false;
             this.ClientTable.AutoGenerateColumns = false;
             this.ClientTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.ClientTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.ClientTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.ClientTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ClientTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -78,6 +78,7 @@
             this.birthdateDataGridViewTextBoxColumn});
             this.ClientTable.DataSource = this.clientBindingSource;
             this.ClientTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ClientTable.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.ClientTable.Location = new System.Drawing.Point(8, 35);
             this.ClientTable.Name = "ClientTable";
             this.ClientTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -106,9 +107,31 @@
             this.panel1.Size = new System.Drawing.Size(847, 35);
             this.panel1.TabIndex = 2;
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.Location = new System.Drawing.Point(225, 4);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 27);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "View Option";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // FilterOption
+            // 
+            this.FilterOption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.FilterOption.FormattingEnabled = true;
+            this.FilterOption.Location = new System.Drawing.Point(296, 7);
+            this.FilterOption.Name = "FilterOption";
+            this.FilterOption.Size = new System.Drawing.Size(138, 21);
+            this.FilterOption.TabIndex = 11;
+            this.FilterOption.SelectedIndexChanged += new System.EventHandler(this.FilterOption_SelectedIndexChanged);
+            // 
             // AddButton
             // 
-            this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(207)))), ((int)(((byte)(24)))));
+            this.AddButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(182)))), ((int)(((byte)(221)))));
             this.AddButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -124,7 +147,7 @@
             // 
             // UpdateButton
             // 
-            this.UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(165)))), ((int)(((byte)(22)))));
+            this.UpdateButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(157)))), ((int)(((byte)(209)))));
             this.UpdateButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.UpdateButton.FlatAppearance.BorderSize = 0;
             this.UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -140,7 +163,7 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(0)))), ((int)(((byte)(12)))));
+            this.DeleteButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(127)))), ((int)(((byte)(193)))));
             this.DeleteButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.DeleteButton.FlatAppearance.BorderSize = 0;
             this.DeleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -156,7 +179,7 @@
             // 
             // ViewLoanButton
             // 
-            this.ViewLoanButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(146)))), ((int)(((byte)(227)))));
+            this.ViewLoanButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(116)))), ((int)(((byte)(174)))));
             this.ViewLoanButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.ViewLoanButton.FlatAppearance.BorderSize = 0;
             this.ViewLoanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -179,28 +202,6 @@
             this.SearchTextbox.Size = new System.Drawing.Size(162, 27);
             this.SearchTextbox.TabIndex = 1;
             this.SearchTextbox.TextChanged += new System.EventHandler(this.SearchTextbox_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.Location = new System.Drawing.Point(225, 4);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 27);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "View Option";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // FilterOption
-            // 
-            this.FilterOption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.FilterOption.FormattingEnabled = true;
-            this.FilterOption.Location = new System.Drawing.Point(296, 7);
-            this.FilterOption.Name = "FilterOption";
-            this.FilterOption.Size = new System.Drawing.Size(138, 21);
-            this.FilterOption.TabIndex = 11;
-            this.FilterOption.SelectedIndexChanged += new System.EventHandler(this.FilterOption_SelectedIndexChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -230,7 +231,7 @@
             // birthdateDataGridViewTextBoxColumn
             // 
             this.birthdateDataGridViewTextBoxColumn.DataPropertyName = "Birthdate";
-            dataGridViewCellStyle1.Format = "D";
+            dataGridViewCellStyle1.Format = "d";
             dataGridViewCellStyle1.NullValue = null;
             this.birthdateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.birthdateDataGridViewTextBoxColumn.HeaderText = "Birthdate";
@@ -244,7 +245,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(863, 422);
             this.Controls.Add(this.ClientTable);
             this.Controls.Add(this.panel1);
@@ -275,12 +276,12 @@
         private System.Windows.Forms.Button UpdateButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.BindingSource clientBindingSource;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox FilterOption;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn residencyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn birthdateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox FilterOption;
     }
 }
