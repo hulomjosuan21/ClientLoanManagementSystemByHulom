@@ -77,6 +77,9 @@
     <Compile Include="Entities\Loan.cs">
       <DependentUpon>HulomModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Schedule.cs">
+      <DependentUpon>HulomModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +110,12 @@
     <Compile Include="Forms\PopUpForms\AddLoanForm.Designer.cs">
       <DependentUpon>AddLoanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\PopUpForms\ScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PopUpForms\ScheduleForm.Designer.cs">
+      <DependentUpon>ScheduleForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PopUpForms\SetStatusForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +124,7 @@
     </Compile>
     <Compile Include="Handlers\ClientHandler.cs" />
     <Compile Include="Handlers\LoanHandlers.cs" />
+    <Compile Include="Handlers\ScheduleHandler.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +151,9 @@
     <EmbeddedResource Include="Forms\PopUpForms\AddLoanForm.resx">
       <DependentUpon>AddLoanForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PopUpForms\ScheduleForm.resx">
+      <DependentUpon>ScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\PopUpForms\SetStatusForm.resx">
       <DependentUpon>SetStatusForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +179,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ClientLoanManagementSystemByHulom.Entities.Client.datasource" />
     <None Include="Properties\DataSources\ClientLoanManagementSystemByHulom.Entities.Loan.datasource" />
+    <None Include="Properties\DataSources\ClientLoanManagementSystemByHulom.Entities.Schedule.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

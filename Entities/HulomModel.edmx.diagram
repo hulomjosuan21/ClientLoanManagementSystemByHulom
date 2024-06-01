@@ -7,6 +7,7 @@
       <Diagram DiagramId="3b8e6fd8a6ac4aa2a3a06c11588fafe1" Name="Diagram1">
         <EntityTypeShape EntityType="hulomdbModel.Client" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="hulomdbModel.Loan" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="hulomdbModel.Schedule" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

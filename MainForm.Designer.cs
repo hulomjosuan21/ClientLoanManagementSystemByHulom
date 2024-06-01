@@ -111,7 +111,7 @@ namespace ClientLoanManagementSystemByHulom
             this.ClientsButton.Name = "ClientsButton";
             this.ClientsButton.Size = new System.Drawing.Size(150, 29);
             this.ClientsButton.TabIndex = 1;
-            this.ClientsButton.Text = "CLIENTS";
+            this.ClientsButton.Text = "MEMBERS";
             this.ClientsButton.UseVisualStyleBackColor = false;
             this.ClientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
             // 
@@ -130,7 +130,7 @@ namespace ClientLoanManagementSystemByHulom
             this.DashboardButton.Name = "DashboardButton";
             this.DashboardButton.Size = new System.Drawing.Size(150, 29);
             this.DashboardButton.TabIndex = 0;
-            this.DashboardButton.Text = "DASHBOARD";
+            this.DashboardButton.Text = "HOME";
             this.DashboardButton.UseVisualStyleBackColor = false;
             this.DashboardButton.Click += new System.EventHandler(this.DashboardButton_Click);
             // 

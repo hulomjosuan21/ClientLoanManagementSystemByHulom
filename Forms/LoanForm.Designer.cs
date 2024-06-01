@@ -165,6 +165,7 @@ namespace ClientLoanManagementSystemByHulom.Forms
             this.LoanTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.LoanTable.Size = new System.Drawing.Size(1306, 490);
             this.LoanTable.TabIndex = 2;
+            this.LoanTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.LoanTable_CellDoubleClick);
             this.LoanTable.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.LoanTable_CellFormatting);
             this.LoanTable.SelectionChanged += new System.EventHandler(this.LoanTable_SelectionChanged);
             // 

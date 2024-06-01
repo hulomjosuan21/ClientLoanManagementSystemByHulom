@@ -156,5 +156,13 @@ namespace ClientLoanManagementSystemByHulom.Forms
         {
             _loanDb.SearchLoan(SearchTextbox.Text.Trim());
         }
+
+        private void LoanTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            using (ScheduleForm viewSchedule = new ScheduleForm(_loanId, _currentClientId))
+            {
+                viewSchedule.ShowDialog();
+            }
+        }
     }
 }
